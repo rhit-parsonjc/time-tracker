@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import TimeEntryList from "./TimeEntryList/TimeEntryList";
+
+type timeEntry = {
+  description: string;
+  category: string;
+  time: Date;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  function logTime() {
+    const newEntry = {
+      description,
+      category,
+      time: new Date(),
+    };
+    setTimeEntries((prevTimeEntries) => [...prevTimeEntries, newEntry]);
+  }
+  const [timeEntries, setTimeEntries] = useState<timeEntry[]>([]);
+  const [description, setDescription] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([
+    "Work",
+    "Sleep",
+    "Food",
+    "Fun",
+  ]);
+  const [category, setCategory] = useState<string>("");
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Time Tracker</h1>
+      <p>Press this button to log the time.</p>
+      <label htmlFor="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <button onClick={logTime}>Time</button>
+      <label htmlFor="category">Category</label>
+      <select
+        name="category"
+        id="category"
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        {categories.map((category) => (
+          <option value={category}>{category}</option>
+        ))}
+      </select>
+      <TimeEntryList timeEntries={timeEntries}></TimeEntryList>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
