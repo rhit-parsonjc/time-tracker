@@ -10,9 +10,15 @@ label {
 form {
   padding: 1em;
 }
-form > div {
+.formLine {
   padding: 0.5em;
 }
-form * {
+.formLine > * {
   margin-right: 0.5em;
+}
+.formLine > :last-child {
+  margin-right: 0;
+}
+.formLine:hover * {
+  font-weight: bold;
 }

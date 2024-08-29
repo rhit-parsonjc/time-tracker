@@ -23,7 +23,7 @@ function TimeEntryForm(props: Props) {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <div id="descriptionEntry">
+      <div className="formLine">
         <label htmlFor="description">Description</label>
         <input
           type="text"
@@ -32,7 +32,7 @@ function TimeEntryForm(props: Props) {
           onChange={(e) => setDescription(e.target.value)}
         ></input>
       </div>
-      <div id="category">
+      <div className="formLine">
         <label htmlFor="category">Category</label>
         <select
           name="category"
@@ -44,7 +44,7 @@ function TimeEntryForm(props: Props) {
           <option value="fun">Fun</option>
         </select>
       </div>
-      <div id="dateEntry">
+      <div className="formLine">
         <label htmlFor="date">Date</label>
         <input
           type="date"
@@ -53,7 +53,7 @@ function TimeEntryForm(props: Props) {
           onChange={(e) => setDate(e.target.value)}
         />
       </div>
-      <div id="timeEntries">
+      <div className="formLine">
         <label htmlFor="starttime">Start Time</label>
         <input
           type="time"
