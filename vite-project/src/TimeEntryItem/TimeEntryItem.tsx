@@ -8,8 +8,8 @@ function TimeEntryItem(props: Props) {
   const { timeEntry } = props;
   return (
     <li>
-      {timeEntry.category} {timeEntry.description}{" "}
-      {timeEntry.time.toISOString()}
+      {timeEntry.category} {timeEntry.description} {timeEntry.date}{" "}
+      {timeEntry.startTime} {timeEntry.endTime}
     </li>
   );
 }
