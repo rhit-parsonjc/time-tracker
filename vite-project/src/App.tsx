@@ -11,7 +11,9 @@ function App() {
   }
   return (
     <>
+      <h1>Add Entry</h1>
       <TimeEntryForm addTimeEntry={addTimeEntry} />
+      <h1>List of Entries</h1>
       <TimeEntryList timeEntries={timeEntries} />
     </>
   );

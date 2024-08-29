@@ -1,0 +1,18 @@
+input,
+select {
+  font-family: Verdana, sans-serif;
+  font-size: 1em;
+}
+label {
+  font-family: Georgia, serif;
+  font-size: 1em;
+}
+form {
+  padding: 1em;
+}
+form > div {
+  padding: 0.5em;
+}
+form * {
+  margin-right: 0.5em;
+}
