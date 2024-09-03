@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import TimeEntryList from "./TimeEntryList/TimeEntryList";
 import TimeEntryForm from "./TimeEntryForm/TimeEntryForm";
-import TimeEntry from "./data/TimeEntry";
+import { TimeEntry } from "./data/TimeEntry";
 
 function App() {
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);

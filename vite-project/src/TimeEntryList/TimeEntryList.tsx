@@ -1,5 +1,6 @@
-import TimeEntry from "../data/TimeEntry";
+import { TimeEntry } from "../data/TimeEntry";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
+import styles from "./TimeEntryList.module.css";
 
 type Props = {
   timeEntries: TimeEntry[];
@@ -8,7 +9,7 @@ type Props = {
 function TimeEntryList(props: Props) {
   const { timeEntries } = props;
   return (
-    <ul>
+    <ul id={styles.timeentrylist}>
       {timeEntries.map((timeEntry) => (
         <TimeEntryItem timeEntry={timeEntry} />
       ))}

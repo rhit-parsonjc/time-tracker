@@ -1,4 +1,6 @@
-import TimeEntry from "../data/TimeEntry";
+import { TimeEntry } from "../data/TimeEntry";
+import { determineDuration, formatTimeValue } from "../data/TimeValue";
+import styles from "./TimeEntryItem.module.css";
 
 type Props = {
   timeEntry: TimeEntry;
@@ -8,8 +10,14 @@ function TimeEntryItem(props: Props) {
   const { timeEntry } = props;
   return (
     <li>
-      {timeEntry.category} {timeEntry.description} {timeEntry.date}{" "}
-      {timeEntry.startTime} {timeEntry.endTime}
+      <article id={styles.timeentry}>
+        <h2 id={styles.category}>{timeEntry.category} </h2>
+        <p id={styles.description}>{timeEntry.description}</p>
+        <p>
+          {timeEntry.date} {formatTimeValue(timeEntry.startTime)}-
+          {formatTimeValue(timeEntry.endTime)}
+        </p>
+      </article>
     </li>
   );
 }

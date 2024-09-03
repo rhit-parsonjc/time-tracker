@@ -1,7 +1,12 @@
-h1 {
+h1,
+h2 {
   margin: 0;
   font-family: Garamond, serif;
 }
 body {
   margin: 10px;
+}
+p {
+  margin: 0;
+  font-family: Verdana, sans-serif;
 }
