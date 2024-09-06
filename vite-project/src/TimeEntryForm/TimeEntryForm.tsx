@@ -8,15 +8,24 @@ type Props = {
   addTimeEntry: (timeEntry: TimeEntry) => void;
 };
 
+const defaultCategory = "Unknown";
+
 function TimeEntryForm(props: Props) {
   const { addTimeEntry } = props;
 
   const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>("UNKNOWN");
+  const [category, setCategory] = useState<string>(defaultCategory);
   const [date, setDate] = useState<string>("");
-  const [startTime, setStartTime] = useState<string>("");
-  const [endTime, setEndTime] = useState<string>("");
+  const [startTime, setStartTime] = useState<string>("00:00");
+  const [endTime, setEndTime] = useState<string>("00:00");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([
+    "Work",
+    "Tasks",
+    "Fun",
+    "Religion",
+    "Required",
+  ]);
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -32,6 +41,8 @@ function TimeEntryForm(props: Props) {
     else {
       addTimeEntry(newTimeEntry.value);
       setErrorMessage("");
+      setStartTime(endTime);
+      setEndTime("00:00");
     }
   }
 
@@ -56,9 +67,9 @@ function TimeEntryForm(props: Props) {
             onChange={(e) => setCategory(e.target.value)}
             required
           >
-            <option value="UNKNOWN">Unknown</option>
-            <option value="WORK">Work</option>
-            <option value="FUN">Fun</option>
+            {[defaultCategory, ...categories].map((category) => (
+              <option value={category}>{category}</option>
+            ))}
           </select>
         </div>
         <div className={styles.formline}>
