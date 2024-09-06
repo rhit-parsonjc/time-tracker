@@ -1,3 +1,4 @@
+import { TimeEntryResult, TimeValueResult } from "./LoadTypes";
 import { convertStringToTimeValue } from "./TimeValue";
 import { TimeValue } from "./TimeValue";
 
@@ -19,14 +20,21 @@ export function createTimeEntry(
   description: string,
   category: string,
   date: string,
-  startTime: string,
-  endTime: string
-) {
-  return {
+  startTimeString: string,
+  endTimeString: string
+): TimeEntryResult {
+  const startTime: TimeValueResult = convertStringToTimeValue(startTimeString);
+  if (startTime.error)
+    return { error: true, errorMessage: "Could not convert start time" };
+  const endTime: TimeValueResult = convertStringToTimeValue(endTimeString);
+  if (endTime.error)
+    return { error: true, errorMessage: "Could not convert end time" };
+  const timeEntry: TimeEntry = {
     description,
     category,
     date,
-    startTime: convertStringToTimeValue(startTime),
-    endTime: convertStringToTimeValue(endTime),
+    startTime: startTime.value,
+    endTime: endTime.value,
   };
+  return { error: false, value: timeEntry };
 }
