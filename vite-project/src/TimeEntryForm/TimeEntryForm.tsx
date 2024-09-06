@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TimeEntry, createTimeEntry } from "../data/TimeEntry";
 import styles from "./TimeEntryForm.module.css";
 import { TimeEntryResult } from "../data/LoadTypes";
+import ErrorMessage from "../ErrorMessage/ErrorMesage";
 
 type Props = {
   addTimeEntry: (timeEntry: TimeEntry) => void;
@@ -28,7 +29,10 @@ function TimeEntryForm(props: Props) {
       endTime
     );
     if (newTimeEntry.error) setErrorMessage(newTimeEntry.errorMessage);
-    else addTimeEntry(newTimeEntry.value);
+    else {
+      addTimeEntry(newTimeEntry.value);
+      setErrorMessage("");
+    }
   }
 
   return (
@@ -87,7 +91,7 @@ function TimeEntryForm(props: Props) {
         </div>
         <input type="submit" value="Add Entry" />
       </form>
-      <p style={{ color: "red" }}>{errorMessage}</p>
+      <ErrorMessage message={errorMessage} />
     </>
   );
 }

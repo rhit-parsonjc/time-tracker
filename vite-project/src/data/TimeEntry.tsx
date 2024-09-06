@@ -1,5 +1,5 @@
 import { TimeEntryResult, TimeValueResult } from "./LoadTypes";
-import { convertStringToTimeValue } from "./TimeValue";
+import { convertStringToTimeValue, determineDuration } from "./TimeValue";
 import { TimeValue } from "./TimeValue";
 
 type DateValue = {
@@ -29,6 +29,8 @@ export function createTimeEntry(
   const endTime: TimeValueResult = convertStringToTimeValue(endTimeString);
   if (endTime.error)
     return { error: true, errorMessage: "Could not convert end time" };
+  if (determineDuration(startTime.value, endTime.value) <= 0)
+    return { error: true, errorMessage: "End time is not after start time" };
   const timeEntry: TimeEntry = {
     description,
     category,
