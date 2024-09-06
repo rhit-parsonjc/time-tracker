@@ -14,8 +14,8 @@ function TimeEntryItem(props: Props) {
         <h2 id={styles.category}>{timeEntry.category} </h2>
         <p id={styles.description}>{timeEntry.description}</p>
         <p>
-          {timeEntry.date} {formatTimeValue(timeEntry.startTime)}-
-          {formatTimeValue(timeEntry.endTime)}
+          {timeEntry.date} {formatTimeValue(timeEntry.startTime, false)}-
+          {formatTimeValue(timeEntry.endTime, true)}
         </p>
       </article>
     </li>

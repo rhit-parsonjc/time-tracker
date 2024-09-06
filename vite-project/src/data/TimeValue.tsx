@@ -38,8 +38,12 @@ export function convertStringToTimeValue(timeString: string): TimeValueResult {
   return { error: false, value: timeValue };
 }
 
-export function formatTimeValue(timeValue: TimeValue): string {
+export function formatTimeValue(
+  timeValue: TimeValue,
+  endTime: boolean
+): string {
   const { hours, minutes } = timeValue;
+  if (hours === 0 && minutes === 0) return endTime ? "END" : "START";
   const pm: boolean = hours >= 12;
   const hoursUpdated: number = (pm ? hours - 12 : hours) || 12;
   return hoursUpdated + ":" + numberToString(minutes, 2) + (pm ? " PM" : " AM");
@@ -49,6 +53,9 @@ export function determineDuration(
   startTime: TimeValue,
   endTime: TimeValue
 ): number {
+  if (endTime.hours === 0 && endTime.minutes === 0) {
+    return 24 * 60 - (startTime.hours * 60 + startTime.minutes);
+  }
   return (
     (endTime.hours - startTime.hours) * 60 +
     (endTime.minutes - startTime.minutes)
