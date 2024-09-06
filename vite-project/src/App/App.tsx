@@ -3,7 +3,7 @@ import "./App.css";
 import TimeEntryList from "../TimeEntryList/TimeEntryList";
 import TimeEntryForm from "../TimeEntryForm/TimeEntryForm";
 import { TimeEntry } from "../data/TimeEntry";
-import { importTimeEntries } from "../data/ImportExport";
+import { importTimeEntries, writeTimeEntries } from "../data/ImportExport";
 
 function App() {
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
@@ -32,6 +32,7 @@ function App() {
       <TimeEntryForm addTimeEntry={addTimeEntry} />
       <h1>List of Entries</h1>
       <input type="file" onChange={handleFileImport} />
+      <button onClick={() => writeTimeEntries(timeEntries)}>Export</button>
       <p style={{ color: "red" }}>{timeEntryErrorMsg}</p>
       <TimeEntryList timeEntries={timeEntries} />
     </>

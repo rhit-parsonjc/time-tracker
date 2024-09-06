@@ -1,5 +1,11 @@
 import { TimeEntry } from "./TimeEntry";
-import { convertStringToTimeValue, TimeValue } from "./TimeValue";
+import {
+  convertStringToTimeValue,
+  formatTimeValue,
+  TimeValue,
+} from "./TimeValue";
+import { saveAs } from "file-saver";
+import { numberToString } from "./Utilities";
 
 type fileEventHandler = (e: ProgressEvent<FileReader>) => void;
 
@@ -59,4 +65,28 @@ export function importTimeEntries(
     },
     () => onError("Error in reading text from file")
   );
+}
+
+export function writeTimeEntries(timeEntries: TimeEntry[]) {
+  const lines: string[] = timeEntries.map((timeEntry) => {
+    const { category, description, date, startTime, endTime } = timeEntry;
+    return (
+      category +
+      "\t" +
+      description +
+      "\t" +
+      date +
+      "\t" +
+      startTime.hours +
+      ":" +
+      numberToString(startTime.minutes, 2) +
+      "\t" +
+      endTime.hours +
+      ":" +
+      numberToString(endTime.minutes, 2) +
+      "\n"
+    );
+  });
+  const file: Blob = new Blob(lines);
+  saveAs(file, "entries.txt");
 }
