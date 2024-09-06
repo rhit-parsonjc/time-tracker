@@ -15,7 +15,7 @@ export function convertStringToTimeValue(timeString: string): TimeValueResult {
   let hours: number = 0;
   try {
     hours = parseInt(hourString);
-    if (hours < 0 || hours >= 24)
+    if (hours < 0 || hours > 24)
       return { error: true, errorMessage: "Hour value out of range" };
   } catch (e) {
     return {
@@ -26,7 +26,7 @@ export function convertStringToTimeValue(timeString: string): TimeValueResult {
   let minutes: number = 0;
   try {
     minutes = parseInt(minuteString);
-    if (minutes < 0 || minutes >= 60)
+    if (minutes < 0 || minutes >= 60 || (hours === 24 && minutes !== 0))
       return { error: true, errorMessage: "Minute value out of range" };
   } catch (e) {
     return {
@@ -38,12 +38,10 @@ export function convertStringToTimeValue(timeString: string): TimeValueResult {
   return { error: false, value: timeValue };
 }
 
-export function formatTimeValue(
-  timeValue: TimeValue,
-  endTime: boolean
-): string {
+export function formatTimeValue(timeValue: TimeValue): string {
   const { hours, minutes } = timeValue;
-  if (hours === 0 && minutes === 0) return endTime ? "END" : "START";
+  if (hours === 0 && minutes === 0) return "START";
+  if (hours === 24 && minutes === 0) return "END";
   const pm: boolean = hours >= 12;
   const hoursUpdated: number = (pm ? hours - 12 : hours) || 12;
   return hoursUpdated + ":" + numberToString(minutes, 2) + (pm ? " PM" : " AM");
@@ -53,9 +51,6 @@ export function determineDuration(
   startTime: TimeValue,
   endTime: TimeValue
 ): number {
-  if (endTime.hours === 0 && endTime.minutes === 0) {
-    return 24 * 60 - (startTime.hours * 60 + startTime.minutes);
-  }
   return (
     (endTime.hours - startTime.hours) * 60 +
     (endTime.minutes - startTime.minutes)

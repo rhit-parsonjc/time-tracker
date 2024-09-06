@@ -29,6 +29,8 @@ export function createTimeEntry(
   const endTime: TimeValueResult = convertStringToTimeValue(endTimeString);
   if (endTime.error)
     return { error: true, errorMessage: "Could not convert end time" };
+  if (endTime.value.hours === 0 && endTime.value.minutes === 0)
+    endTime.value.hours = 24;
   if (determineDuration(startTime.value, endTime.value) <= 0)
     return { error: true, errorMessage: "End time is not after start time" };
   const timeEntry: TimeEntry = {
