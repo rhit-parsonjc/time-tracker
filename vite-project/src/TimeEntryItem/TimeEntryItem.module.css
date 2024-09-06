@@ -14,3 +14,8 @@
   background-color: lightgray;
   border: 1px solid black;
 }
+#timeentry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

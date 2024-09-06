@@ -1,5 +1,9 @@
 import { TimeEntry } from "../data/TimeEntry";
-import { determineDuration, formatTimeValue } from "../data/TimeValue";
+import {
+  determineDuration,
+  formatDuration,
+  formatTimeValue,
+} from "../data/TimeValue";
 import styles from "./TimeEntryItem.module.css";
 
 type Props = {
@@ -11,12 +15,21 @@ function TimeEntryItem(props: Props) {
   return (
     <li>
       <article id={styles.timeentry}>
-        <h2 id={styles.category}>{timeEntry.category} </h2>
-        <p id={styles.description}>{timeEntry.description}</p>
-        <p>
-          {timeEntry.date} {formatTimeValue(timeEntry.startTime, false)}-
-          {formatTimeValue(timeEntry.endTime, true)}
-        </p>
+        <div id={styles.maincontent}>
+          <h2 id={styles.category}>{timeEntry.category} </h2>
+          <p id={styles.description}>{timeEntry.description}</p>
+          <p>
+            {timeEntry.date} {formatTimeValue(timeEntry.startTime, false)}-
+            {formatTimeValue(timeEntry.endTime, true)}
+          </p>
+        </div>
+        <div id={styles.sidecontent}>
+          <p>
+            {formatDuration(
+              determineDuration(timeEntry.startTime, timeEntry.endTime)
+            )}
+          </p>
+        </div>
       </article>
     </li>
   );

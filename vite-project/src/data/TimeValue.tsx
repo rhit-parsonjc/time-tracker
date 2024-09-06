@@ -61,3 +61,11 @@ export function determineDuration(
     (endTime.minutes - startTime.minutes)
   );
 }
+
+export function formatDuration(minutesTotal: number): string {
+  const minutes: number = minutesTotal % 60;
+  const hours: number = (minutesTotal - minutes) / 60;
+  const hoursText: string = hours > 0 ? hours + "h" : "";
+  const minutesText: string = minutes > 0 ? minutes + "m" : "";
+  return hoursText + minutesText;
+}
