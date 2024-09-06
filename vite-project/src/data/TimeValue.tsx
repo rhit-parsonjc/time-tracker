@@ -5,13 +5,28 @@ export type TimeValue = {
   minutes: number;
 };
 
-export function convertStringToTimeValue(timeString: string) {
-  const colon: number = timeString.indexOf(":");
-  const hourString: string = timeString.substring(0, colon);
-  const minuteString: string = timeString.substring(colon + 1);
-  const hourNumber: number = parseInt(hourString);
-  const minuteNumber: number = parseInt(minuteString);
-  const timeValue: TimeValue = { hours: hourNumber, minutes: minuteNumber };
+export function convertStringToTimeValue(
+  timeString: string
+): TimeValue | string {
+  const colonIndex: number = timeString.indexOf(":");
+  if (colonIndex === -1) return "Could not find colon in string";
+  const hourString: string = timeString.substring(0, colonIndex);
+  const minuteString: string = timeString.substring(colonIndex + 1);
+  let hours: number = 0;
+  try {
+    hours = parseInt(hourString);
+    if (hours < 0 || hours >= 24) return "Hour value out of range";
+  } catch (e) {
+    return "Could not parse portion before colon as an hour";
+  }
+  let minutes: number = 0;
+  try {
+    minutes = parseInt(minuteString);
+    if (minutes < 0 || minutes >= 60) return "Minute value out of range";
+  } catch (e) {
+    return "Could not parse portion after colon as a minute";
+  }
+  const timeValue: TimeValue = { hours, minutes };
   return timeValue;
 }
 
