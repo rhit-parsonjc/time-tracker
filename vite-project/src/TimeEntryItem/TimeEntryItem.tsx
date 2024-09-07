@@ -24,7 +24,6 @@ function TimeEntryItem(props: Props) {
             {formatTimeValue(timeEntry.endTime)}
           </p>
         </div>
-        <Icon />
         <div id={styles.sidecontent}>
           <p>
             {formatDuration(
