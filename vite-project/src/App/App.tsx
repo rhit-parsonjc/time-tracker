@@ -28,7 +28,6 @@ function App() {
       {selectedTab === "ADD" && <TimeEntryForm addTimeEntry={addTimeEntry} />}
       {selectedTab === "IMPORT" && (
         <ImportForm
-          timeEntries={timeEntries}
           modifyTimeEntries={(newTimeEntries) => setTimeEntries(newTimeEntries)}
         />
       )}

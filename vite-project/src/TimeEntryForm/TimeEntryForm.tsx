@@ -19,12 +19,12 @@ function TimeEntryForm(props: Props) {
   const [startTime, setStartTime] = useState<string>("00:00");
   const [endTime, setEndTime] = useState<string>("00:00");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [categories, setCategories] = useState<string[]>([
+  const [categories, _] = useState<string[]>([
     "Work",
     "Tasks",
     "Fun",
     "Religion",
-    "Required",
+    "Health",
   ]);
 
   function handleSubmit(e: any) {

@@ -2,12 +2,6 @@ import { TimeEntryResult, TimeValueResult } from "./LoadTypes";
 import { convertStringToTimeValue, determineDuration } from "./TimeValue";
 import { TimeValue } from "./TimeValue";
 
-type DateValue = {
-  month: number;
-  day: number;
-  year: number;
-};
-
 export type TimeEntry = {
   description: string;
   category: string;

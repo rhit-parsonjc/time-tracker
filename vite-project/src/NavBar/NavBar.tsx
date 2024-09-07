@@ -1,7 +1,6 @@
 import { TabName } from "../App/App";
 import Icon from "../Icon/Icon";
 import styles from "./NavBar.module.css";
-import { useState } from "react";
 
 type Props = {
   tabName: TabName;

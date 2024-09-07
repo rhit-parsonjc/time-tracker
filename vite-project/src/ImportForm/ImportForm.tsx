@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { TimeEntry } from "../data/TimeEntry";
-import { importTimeEntries, writeTimeEntries } from "../data/ImportExport";
+import { importTimeEntries } from "../data/ImportExport";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
 
 type Props = {
-  timeEntries: TimeEntry[];
   modifyTimeEntries: (timeEntries: TimeEntry[]) => void;
 };
 
 function ImportExportForm(props: Props) {
-  const { timeEntries, modifyTimeEntries } = props;
+  const { modifyTimeEntries } = props;
   const [timeEntryErrorMsg, setTimeEntryErrorMsg] = useState<string>("");
 
   function handleFileImport(e: React.ChangeEvent<HTMLInputElement>) {
