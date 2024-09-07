@@ -31,7 +31,6 @@ function ImportExportForm(props: Props) {
   return (
     <div>
       <input type="file" onChange={handleFileImport} />
-      <button onClick={() => writeTimeEntries(timeEntries)}>Export</button>
       <ErrorMessage message={timeEntryErrorMsg} />
     </div>
   );

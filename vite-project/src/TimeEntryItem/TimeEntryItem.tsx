@@ -4,6 +4,7 @@ import {
   formatDuration,
   formatTimeValue,
 } from "../data/TimeValue";
+import Icon from "../Icon/Icon";
 import styles from "./TimeEntryItem.module.css";
 
 type Props = {
@@ -19,10 +20,11 @@ function TimeEntryItem(props: Props) {
           <h2 id={styles.category}>{timeEntry.category} </h2>
           <p id={styles.description}>{timeEntry.description}</p>
           <p>
-            {timeEntry.date} {formatTimeValue(timeEntry.startTime, false)}-
-            {formatTimeValue(timeEntry.endTime, true)}
+            {timeEntry.date} {formatTimeValue(timeEntry.startTime)}-
+            {formatTimeValue(timeEntry.endTime)}
           </p>
         </div>
+        <Icon />
         <div id={styles.sidecontent}>
           <p>
             {formatDuration(

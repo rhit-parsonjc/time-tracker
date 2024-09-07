@@ -1,3 +1,4 @@
+import { writeTimeEntries } from "../data/ImportExport";
 import { TimeEntry } from "../data/TimeEntry";
 import { determineDuration } from "../data/TimeValue";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
@@ -19,11 +20,14 @@ function TimeEntryList(props: Props) {
     }
   });
   return (
-    <ul id={styles.timeentrylist}>
-      {sortedTimeEntries.map((timeEntry) => (
-        <TimeEntryItem timeEntry={timeEntry} />
-      ))}
-    </ul>
+    <>
+      <button onClick={() => writeTimeEntries(timeEntries)}>Export</button>
+      <ul id={styles.timeentrylist}>
+        {sortedTimeEntries.map((timeEntry) => (
+          <TimeEntryItem timeEntry={timeEntry} />
+        ))}
+      </ul>
+    </>
   );
 }
 
