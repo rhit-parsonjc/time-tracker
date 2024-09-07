@@ -1,8 +1,18 @@
 #timeentry {
   padding: 0.5em;
-  border: 3px solid hsl(39, 100%, 70%);
   margin: 1em 0;
   border-radius: 1em;
+  border: 3px solid hsl(39, 100%, 70%);
+  position: relative;
+}
+#timeentryinfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#timeentry.notDeletable:hover {
+  background-color: hsl(39, 100%, 70%);
+  border: 3px solid orange;
 }
 #category {
   font-weight: bold;
@@ -10,12 +20,21 @@
 #description {
   font-style: italic;
 }
-#timeentry:hover {
-  background-color: hsl(39, 100%, 70%);
-  border: 3px solid orange;
+#timeentry.deletable:hover {
+  background-color: lightgray;
+  border: 3px solid gray;
+  cursor: pointer;
 }
-#timeentry {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#timeentry.deletable:hover #timeentryinfo {
+  opacity: 0.1;
+}
+#deleteIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+#timeentry.deletable:hover #deleteIcon {
+  visibility: visible;
 }

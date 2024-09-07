@@ -14,6 +14,11 @@ function App() {
   function addTimeEntry(timeEntry: TimeEntry) {
     setTimeEntries((prevTimeEntries) => [...prevTimeEntries, timeEntry]);
   }
+  function deleteTimeEntries(index: number) {
+    setTimeEntries((prevTimeEntries) =>
+      prevTimeEntries.filter((_, i) => i !== index)
+    );
+  }
   return (
     <>
       <NavBar
@@ -28,7 +33,11 @@ function App() {
         />
       )}
       <h1>List of Entries</h1>
-      <TimeEntryList timeEntries={timeEntries} />
+      <TimeEntryList
+        timeEntries={timeEntries}
+        deletionActive={selectedTab === "DELETE"}
+        deleteTimeEntries={deleteTimeEntries}
+      />
     </>
   );
 }
