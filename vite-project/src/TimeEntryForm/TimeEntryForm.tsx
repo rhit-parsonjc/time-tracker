@@ -6,30 +6,21 @@ import ErrorMessage from "../ErrorMessage/ErrorMesage";
 
 type Props = {
   addTimeEntry: (timeEntry: TimeEntry) => void;
+  categories: string[];
 };
 
-const defaultCategory = "Unknown";
-
 function TimeEntryForm(props: Props) {
-  const { addTimeEntry } = props;
+  const { addTimeEntry, categories } = props;
 
   const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>(defaultCategory);
+  const [category, setCategory] = useState<string>(categories[0]);
   const [date, setDate] = useState<string>("");
   const [startTime, setStartTime] = useState<string>("00:00");
   const [endTime, setEndTime] = useState<string>("00:00");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [categories, _] = useState<string[]>([
-    "Work",
-    "Tasks",
-    "Fun",
-    "Religion",
-    "Health",
-  ]);
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log({ description, category, date, startTime, endTime });
     const newTimeEntry: TimeEntryResult = createTimeEntry(
       description,
       category,
@@ -67,7 +58,7 @@ function TimeEntryForm(props: Props) {
             onChange={(e) => setCategory(e.target.value)}
             required
           >
-            {[defaultCategory, ...categories].map((category) => (
+            {categories.map((category) => (
               <option value={category}>{category}</option>
             ))}
           </select>

@@ -62,5 +62,5 @@ export function formatDuration(minutesTotal: number): string {
   const hours: number = (minutesTotal - minutes) / 60;
   const hoursText: string = hours > 0 ? hours + "h" : "";
   const minutesText: string = minutes > 0 ? minutes + "m" : "";
-  return hoursText + minutesText;
+  return hoursText + (hours && minutes ? " " : "") + minutesText;
 }

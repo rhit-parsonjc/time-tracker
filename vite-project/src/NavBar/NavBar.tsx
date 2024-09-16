@@ -43,6 +43,15 @@ function NavBar(props: Props) {
           </div>
           <h1>Import Entries</h1>
         </li>
+        <li
+          className={tabName === "STATS" ? styles.selected : styles.notselected}
+          onClick={() => setTabName("STATS")}
+        >
+          <div className={styles.icon}>
+            <Icon iconName="stats" />
+          </div>
+          <h1>View Statistics</h1>
+        </li>
       </ul>
     </nav>
   );

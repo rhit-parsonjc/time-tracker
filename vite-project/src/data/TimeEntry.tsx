@@ -36,3 +36,13 @@ export function createTimeEntry(
   };
   return { error: false, value: timeEntry };
 }
+
+export function sortTimeEntries(a: TimeEntry, b: TimeEntry) {
+  if (a.date > b.date) return 1;
+  else if (a.date < b.date) return -1;
+  else {
+    const timeInterval = determineDuration(b.startTime, a.startTime);
+    if (timeInterval !== 0) return timeInterval;
+    else return determineDuration(b.endTime, a.endTime);
+  }
+}

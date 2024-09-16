@@ -1,0 +1,55 @@
+#statsTableHeader {
+  background-color: hsl(39, 100%, 50%);
+}
+
+.statsTableRow:hover {
+  background-color: hsl(39, 100%, 90%);
+  font-weight: bold;
+}
+
+#statsTable {
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.statsTableHeaderEntry,
+.statsTableDataEntry {
+  padding: 1em;
+  text-align: center;
+}
+
+#barGraph {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.barEntry {
+  padding: 1em 0;
+  height: 2em;
+  text-align: center;
+  border: 1px solid black;
+  background-color: hsl(39, 100%, 90%);
+  position: relative;
+}
+
+.barEntry:hover {
+  background-color: hsl(39, 100%, 70%);
+  font-weight: bold;
+}
+
+.barEntryLabel {
+  position: absolute;
+  left: 50%;
+}
+
+.barEntry:nth-child(odd) .barEntryLabel {
+  bottom: 0;
+  transform: translate(-50%, 100%);
+}
+
+.barEntry:nth-child(even) .barEntryLabel {
+  top: 0;
+  transform: translate(-50%, -100%);
+}
