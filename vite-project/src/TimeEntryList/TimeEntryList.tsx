@@ -1,5 +1,6 @@
 import { writeTimeEntries } from "../data/ImportExport";
 import { sortTimeEntries, TimeEntry } from "../data/TimeEntry";
+import Icon from "../Icon/Icon";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
 import styles from "./TimeEntryList.module.css";
 
@@ -14,7 +15,13 @@ function TimeEntryList(props: Props) {
   const sortedTimeEntries: TimeEntry[] = [...timeEntries].sort(sortTimeEntries);
   return (
     <>
-      <button onClick={() => writeTimeEntries(timeEntries)}>Export</button>
+      <button
+        id={styles.exportButton}
+        onClick={() => writeTimeEntries(timeEntries)}
+      >
+        <Icon iconName="export" />
+        &nbsp;Export
+      </button>
       <ul id={styles.timeentrylist}>
         {sortedTimeEntries.map((timeEntry, index) => (
           <TimeEntryItem

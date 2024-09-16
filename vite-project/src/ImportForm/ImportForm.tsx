@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TimeEntry } from "../data/TimeEntry";
 import { importTimeEntries } from "../data/ImportExport";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
+import styles from "./ImportForm.module.css";
 
 type Props = {
   modifyTimeEntries: (timeEntries: TimeEntry[]) => void;
@@ -29,7 +30,11 @@ function ImportExportForm(props: Props) {
 
   return (
     <div>
-      <input type="file" onChange={handleFileImport} />
+      <input
+        className={styles.importButton}
+        type="file"
+        onChange={handleFileImport}
+      />
       <ErrorMessage message={timeEntryErrorMsg} />
     </div>
   );

@@ -1,8 +1,8 @@
 import { FiTrash2, FiTable } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
-import { CiImport } from "react-icons/ci";
+import { CiImport, CiExport } from "react-icons/ci";
 
-type IconName = "add" | "delete" | "import" | "stats";
+type IconName = "add" | "delete" | "import" | "stats" | "export";
 type Props = {
   iconName: IconName;
 };
@@ -18,6 +18,8 @@ function Icon(props: Props) {
       return <CiImport />;
     case "stats":
       return <FiTable />;
+    case "export":
+      return <CiExport />;
   }
 }
 
