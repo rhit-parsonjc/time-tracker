@@ -1,0 +1,21 @@
+#navBarEntry {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#navBarEntry.notSelected {
+}
+
+#navBarEntry.selected {
+  background-color: hsl(39, 100%, 50%);
+}
+
+#navBarEntry:hover:not(.selected) {
+  background-color: hsl(39, 100%, 70%);
+}
+
+#navBarIcon {
+  margin-right: 0.5em;
+}

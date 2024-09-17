@@ -1,5 +1,5 @@
 import { TabName } from "../App/App";
-import Icon from "../Icon/Icon";
+import NavBarEntry from "../NavBarEntry/NavBarEntry";
 import styles from "./NavBar.module.css";
 
 type Props = {
@@ -12,46 +12,30 @@ function NavBar(props: Props) {
   return (
     <nav id={styles.navbar}>
       <ul>
-        <li
-          className={tabName === "ADD" ? styles.selected : styles.notselected}
-          onClick={() => setTabName("ADD")}
-        >
-          <div className={styles.icon}>
-            <Icon iconName="add" />
-          </div>
-          <h1>Add Entry</h1>
-        </li>
-        <li
-          className={
-            tabName === "DELETE" ? styles.selected : styles.notselected
-          }
-          onClick={() => setTabName("DELETE")}
-        >
-          <div className={styles.icon}>
-            <Icon iconName="delete" />
-          </div>
-          <h1>Delete Entry</h1>
-        </li>
-        <li
-          className={
-            tabName === "IMPORT" ? styles.selected : styles.notselected
-          }
-          onClick={() => setTabName("IMPORT")}
-        >
-          <div className={styles.icon}>
-            <Icon iconName="import" />
-          </div>
-          <h1>Import Entries</h1>
-        </li>
-        <li
-          className={tabName === "STATS" ? styles.selected : styles.notselected}
-          onClick={() => setTabName("STATS")}
-        >
-          <div className={styles.icon}>
-            <Icon iconName="stats" />
-          </div>
-          <h1>View Statistics</h1>
-        </li>
+        <NavBarEntry
+          selectTab={() => setTabName("ADD")}
+          iconName="add"
+          selected={tabName === "ADD"}
+          tabLabel="Add Entry"
+        />
+        <NavBarEntry
+          selectTab={() => setTabName("DELETE")}
+          iconName="delete"
+          selected={tabName === "DELETE"}
+          tabLabel="Delete Entry"
+        />
+        <NavBarEntry
+          selectTab={() => setTabName("IMPORT")}
+          iconName="import"
+          selected={tabName === "IMPORT"}
+          tabLabel="Import Entries"
+        />
+        <NavBarEntry
+          selectTab={() => setTabName("STATS")}
+          iconName="stats"
+          selected={tabName === "STATS"}
+          tabLabel="View Statistics"
+        />
       </ul>
     </nav>
   );

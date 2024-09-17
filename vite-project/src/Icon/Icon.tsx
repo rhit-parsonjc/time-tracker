@@ -2,7 +2,7 @@ import { FiTrash2, FiTable } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
 import { CiImport, CiExport } from "react-icons/ci";
 
-type IconName = "add" | "delete" | "import" | "stats" | "export";
+export type IconName = "add" | "delete" | "import" | "stats" | "export";
 type Props = {
   iconName: IconName;
 };

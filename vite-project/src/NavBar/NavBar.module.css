@@ -7,20 +7,3 @@
   display: flex;
   flex-direction: row;
 }
-#navbar > ul > li {
-  padding: 0.5em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-#navbar > ul > li:hover:not(.selected) {
-  background-color: hsl(39, 100%, 70%);
-}
-#navbar > ul > li.selected {
-  background-color: hsl(39, 100%, 50%);
-}
-.notselected {
-}
-.icon {
-  margin-right: 0.5em;
-}
