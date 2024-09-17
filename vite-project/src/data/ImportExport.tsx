@@ -1,7 +1,6 @@
 import { TimeEntry } from "./TimeEntry";
-import { convertStringToTimeValue } from "./TimeValue";
+import { convertStringToTimeValue, formatTimeValue24Hour } from "./TimeValue";
 import { saveAs } from "file-saver";
-import { numberToString } from "./Utilities";
 import { TimeEntryListResult, TimeValueResult } from "./LoadTypes";
 
 type fileEventHandler = (e: ProgressEvent<FileReader>) => void;
@@ -79,13 +78,9 @@ export function writeTimeEntries(timeEntries: TimeEntry[]): void {
       "\t" +
       date +
       "\t" +
-      startTime.hours +
-      ":" +
-      numberToString(startTime.minutes, 2) +
+      formatTimeValue24Hour(startTime) +
       "\t" +
-      endTime.hours +
-      ":" +
-      numberToString(endTime.minutes, 2) +
+      formatTimeValue24Hour(endTime) +
       "\n"
     );
   });

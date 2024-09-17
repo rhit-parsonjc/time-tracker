@@ -1,3 +1,4 @@
+import { TabName } from "../App/App";
 import { writeTimeEntries } from "../data/ImportExport";
 import { sortTimeEntries, TimeEntry } from "../data/TimeEntry";
 import Icon from "../Icon/Icon";
@@ -6,12 +7,13 @@ import styles from "./TimeEntryList.module.css";
 
 type Props = {
   timeEntries: TimeEntry[];
-  deletionActive: boolean;
-  deleteTimeEntries: (index: number) => void;
+  tabName: TabName;
+  modifyTimeEntry: (index: number) => void;
+  selectedIndex: number;
 };
 
 function TimeEntryList(props: Props) {
-  const { timeEntries, deletionActive, deleteTimeEntries } = props;
+  const { timeEntries, tabName, modifyTimeEntry, selectedIndex } = props;
   const sortedTimeEntries: TimeEntry[] = [...timeEntries].sort(sortTimeEntries);
   return (
     <>
@@ -26,8 +28,9 @@ function TimeEntryList(props: Props) {
         {sortedTimeEntries.map((timeEntry, index) => (
           <TimeEntryItem
             timeEntry={timeEntry}
-            deletionActive={deletionActive}
-            onDelete={() => deleteTimeEntries(index)}
+            tabName={tabName}
+            onClick={() => modifyTimeEntry(index)}
+            selected={selectedIndex === index}
           />
         ))}
       </ul>

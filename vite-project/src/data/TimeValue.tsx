@@ -47,6 +47,14 @@ export function formatTimeValue(timeValue: TimeValue): string {
   return hoursUpdated + ":" + numberToString(minutes, 2) + (pm ? " PM" : " AM");
 }
 
+export function formatTimeValue24Hour(timeValue: TimeValue): string {
+  return (
+    numberToString(timeValue.hours, 2) +
+    ":" +
+    numberToString(timeValue.minutes, 2)
+  );
+}
+
 export function determineDuration(
   startTime: TimeValue,
   endTime: TimeValue

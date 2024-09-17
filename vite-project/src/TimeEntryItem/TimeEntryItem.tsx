@@ -1,3 +1,4 @@
+import { TabName } from "../App/App";
 import { TimeEntry } from "../data/TimeEntry";
 import {
   determineDuration,
@@ -9,26 +10,40 @@ import styles from "./TimeEntryItem.module.css";
 
 type Props = {
   timeEntry: TimeEntry;
-  deletionActive: boolean;
-  onDelete: () => void;
+  tabName: TabName;
+  onClick: () => void;
+  selected: boolean;
 };
 
 function TimeEntryItem(props: Props) {
-  const { timeEntry, deletionActive, onDelete } = props;
+  const { timeEntry, tabName, onClick, selected } = props;
   return (
     <li>
       <article
-        id={styles.timeentry}
-        className={deletionActive ? styles.deletable : styles.notDeletable}
-        onClick={deletionActive ? onDelete : () => {}}
+        id={styles.timeEntry}
+        className={
+          selected
+            ? styles.selected
+            : tabName === "DELETE"
+            ? styles.deletable
+            : tabName === "EDIT"
+            ? styles.editable
+            : styles.normal
+        }
+        onClick={onClick}
       >
-        {deletionActive && (
-          <div id={styles.deleteIcon}>
+        {tabName === "DELETE" && (
+          <div className={styles.centerIcon}>
             <Icon iconName="delete" />
           </div>
         )}
-        <div id={styles.timeentryinfo}>
-          <div id={styles.maincontent}>
+        {tabName === "EDIT" && (
+          <div className={styles.centerIcon}>
+            <Icon iconName="edit" />
+          </div>
+        )}
+        <div id={styles.timeEntryInfo}>
+          <div id={styles.mainContent}>
             <h2 id={styles.category}>{timeEntry.category} </h2>
             <p id={styles.description}>{timeEntry.description}</p>
             <p>

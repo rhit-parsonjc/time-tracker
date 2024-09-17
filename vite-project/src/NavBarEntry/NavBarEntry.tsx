@@ -1,4 +1,3 @@
-import { TabName } from "../App/App";
 import Icon, { IconName } from "../Icon/Icon";
 import styles from "./NavBarEntry.module.css";
 

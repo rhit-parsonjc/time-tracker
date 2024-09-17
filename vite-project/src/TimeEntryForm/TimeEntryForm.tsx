@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TimeEntry, createTimeEntry } from "../data/TimeEntry";
 import styles from "./TimeEntryForm.module.css";
 import { TimeEntryResult } from "../data/LoadTypes";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
+import { formatTimeValue24Hour } from "../data/TimeValue";
 
 type Props = {
-  addTimeEntry: (timeEntry: TimeEntry) => void;
+  createNewEntry: boolean;
+  handleButtonPress: (timeEntry: TimeEntry) => void;
   categories: string[];
+  startingTimeEntry?: TimeEntry;
 };
 
 function TimeEntryForm(props: Props) {
-  const { addTimeEntry, categories } = props;
-
+  const { createNewEntry, handleButtonPress, categories, startingTimeEntry } =
+    props;
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<string>(categories[0]);
   const [date, setDate] = useState<string>("");
@@ -19,21 +22,40 @@ function TimeEntryForm(props: Props) {
   const [endTime, setEndTime] = useState<string>("00:00");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  useEffect(() => {
+    if (startingTimeEntry) {
+      setDescription(startingTimeEntry.description);
+      setCategory(startingTimeEntry.category);
+      setDate(startingTimeEntry.date);
+      setStartTime(formatTimeValue24Hour(startingTimeEntry.startTime));
+      setEndTime(formatTimeValue24Hour(startingTimeEntry.endTime));
+    } else {
+      setDescription("");
+      setCategory(categories[0]);
+      setDate("");
+      setStartTime("00:00");
+      setEndTime("00:00");
+    }
+  }, [startingTimeEntry]);
+
   function handleSubmit(e: any) {
     e.preventDefault();
-    const newTimeEntry: TimeEntryResult = createTimeEntry(
+    const timeEntryResult: TimeEntryResult = createTimeEntry(
       description,
       category,
       date,
       startTime,
       endTime
     );
-    if (newTimeEntry.error) setErrorMessage(newTimeEntry.errorMessage);
+    if (timeEntryResult.error) setErrorMessage(timeEntryResult.errorMessage);
     else {
-      addTimeEntry(newTimeEntry.value);
-      setErrorMessage("");
-      setStartTime(endTime);
-      setEndTime("00:00");
+      handleButtonPress(timeEntryResult.value);
+      if (createNewEntry) {
+        setDescription("");
+        setStartTime(endTime);
+        setEndTime("00:00");
+        setErrorMessage("");
+      }
     }
   }
 
@@ -91,7 +113,10 @@ function TimeEntryForm(props: Props) {
             required
           />
         </div>
-        <input type="submit" value="Add Entry" />
+        <input
+          type="submit"
+          value={createNewEntry ? "Add Entry" : "Edit Entry"}
+        />
       </form>
       <ErrorMessage message={errorMessage} />
     </>

@@ -19,6 +19,12 @@ function NavBar(props: Props) {
           tabLabel="Add Entry"
         />
         <NavBarEntry
+          selectTab={() => setTabName("EDIT")}
+          iconName="edit"
+          selected={tabName === "EDIT"}
+          tabLabel="Edit Entry"
+        />
+        <NavBarEntry
           selectTab={() => setTabName("DELETE")}
           iconName="delete"
           selected={tabName === "DELETE"}
