@@ -12,7 +12,7 @@ export type TabName = "ADD" | "EDIT" | "DELETE" | "IMPORT" | "STATS";
 function App() {
   const [selectedTab, setSelectedTab] = useState<TabName>("ADD");
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
-  const [categories, setCategories] = useState<string[]>([
+  const [categories, _] = useState<string[]>([
     "Unknown",
     "Work",
     "Tasks",
