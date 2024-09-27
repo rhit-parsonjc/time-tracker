@@ -5,17 +5,24 @@
   align-items: center;
 }
 
-#navBarEntry.notSelected {
-}
-
 #navBarEntry.selected {
   background-color: hsl(39, 100%, 50%);
 }
 
-#navBarEntry:hover:not(.selected) {
+#navBarEntry:hover.notSelected {
   background-color: hsl(39, 100%, 70%);
 }
 
 #navBarIcon {
   margin-right: 0.5em;
+}
+
+#navBarEntry.notSelected h1 {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  #navBarEntry.notSelected h1 {
+    display: block;
+  }
 }
