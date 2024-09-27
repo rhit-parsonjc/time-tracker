@@ -1,6 +1,6 @@
 import { TabName } from "../App/App";
-import { writeTimeEntries } from "../data/ImportExport";
-import { sortTimeEntries, TimeEntry } from "../data/TimeEntry";
+import { writeTimeEntries } from "../../data/ImportExport";
+import { sortTimeEntries, TimeEntry } from "../../data/TimeEntry";
 import Icon from "../Icon/Icon";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
 import styles from "./TimeEntryList.module.css";

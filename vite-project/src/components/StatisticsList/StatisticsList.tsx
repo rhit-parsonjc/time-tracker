@@ -1,5 +1,5 @@
-import { sortTimeEntries, TimeEntry } from "../data/TimeEntry";
-import { determineDuration, formatDuration } from "../data/TimeValue";
+import { sortTimeEntries, TimeEntry } from "../../data/TimeEntry";
+import { determineDuration, formatDuration } from "../../data/TimeValue";
 import styles from "./StatisticsList.module.css";
 import { useState } from "react";
 

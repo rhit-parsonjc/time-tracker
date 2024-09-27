@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import TimeEntryList from "../TimeEntryList/TimeEntryList";
 import TimeEntryForm from "../TimeEntryForm/TimeEntryForm";
-import { TimeEntry } from "../data/TimeEntry";
+import { TimeEntry } from "../../data/TimeEntry";
 import ImportForm from "../ImportForm/ImportForm";
 import NavBar from "../NavBar/NavBar";
 import StatisticsList from "../StatisticsList/StatisticsList";

@@ -1,10 +1,10 @@
 import { TabName } from "../App/App";
-import { TimeEntry } from "../data/TimeEntry";
+import { TimeEntry } from "../../data/TimeEntry";
 import {
   determineDuration,
   formatDuration,
   formatTimeValue,
-} from "../data/TimeValue";
+} from "../../data/TimeValue";
 import Icon from "../Icon/Icon";
 import styles from "./TimeEntryItem.module.css";
 

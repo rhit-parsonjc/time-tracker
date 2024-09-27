@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TimeEntry } from "../data/TimeEntry";
-import { importTimeEntries } from "../data/ImportExport";
+import { TimeEntry } from "../../data/TimeEntry";
+import { importTimeEntries } from "../../data/ImportExport";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
 import styles from "./ImportForm.module.css";
 

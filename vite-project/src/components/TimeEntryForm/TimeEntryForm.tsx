@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { TimeEntry, createTimeEntry } from "../data/TimeEntry";
+import { TimeEntry, createTimeEntry } from "../../data/TimeEntry";
 import styles from "./TimeEntryForm.module.css";
-import { TimeEntryResult } from "../data/LoadTypes";
+import { TimeEntryResult } from "../../data/LoadTypes";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
-import { formatTimeValue24Hour } from "../data/TimeValue";
+import { formatTimeValue24Hour } from "../../data/TimeValue";
 
 type Props = {
   createNewEntry: boolean;
