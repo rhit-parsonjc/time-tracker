@@ -8,12 +8,12 @@ import styles from "./TimeEntryList.module.css";
 type Props = {
   timeEntries: TimeEntry[];
   tabName: TabName;
-  modifyTimeEntry: (index: number) => void;
-  selectedIndex: number;
+  modifyTimeEntry: (id: string) => void;
+  selectedId: string;
 };
 
 function TimeEntryList(props: Props) {
-  const { timeEntries, tabName, modifyTimeEntry, selectedIndex } = props;
+  const { timeEntries, tabName, modifyTimeEntry, selectedId } = props;
   const sortedTimeEntries: TimeEntry[] = [...timeEntries].sort(sortTimeEntries);
   return (
     <>
@@ -25,12 +25,13 @@ function TimeEntryList(props: Props) {
         &nbsp;Export
       </button>
       <ul id={styles.timeentrylist}>
-        {sortedTimeEntries.map((timeEntry, index) => (
+        {sortedTimeEntries.map((timeEntry) => (
           <TimeEntryItem
             timeEntry={timeEntry}
             tabName={tabName}
-            onClick={() => modifyTimeEntry(index)}
-            selected={selectedIndex === index}
+            onClick={() => modifyTimeEntry(timeEntry.id)}
+            selected={selectedId === timeEntry.id}
+            key={timeEntry.id}
           />
         ))}
       </ul>

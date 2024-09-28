@@ -20,25 +20,25 @@ function App() {
     "Religion",
     "Health",
   ]);
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [selectedId, setSelectedId] = useState<string>("");
 
   function addTimeEntry(timeEntry: TimeEntry): void {
     setTimeEntries((prevTimeEntries) => [...prevTimeEntries, timeEntry]);
   }
-  function deleteTimeEntries(index: number): void {
+  function deleteTimeEntry(id: string): void {
     setTimeEntries((prevTimeEntries) =>
-      prevTimeEntries.filter((_, i) => i !== index)
+      prevTimeEntries.filter((timeEntry) => timeEntry.id !== id)
     );
   }
   function editTimeEntry(timeEntry: TimeEntry): void {
-    setTimeEntries((prevTimeEntries) => {
-      const updatedTimeEntries = [...prevTimeEntries];
-      updatedTimeEntries[selectedIndex] = timeEntry;
-      return updatedTimeEntries;
-    });
+    setTimeEntries((prevTimeEntries) =>
+      prevTimeEntries.map((prevTimeEntry) =>
+        prevTimeEntry.id === selectedId ? timeEntry : prevTimeEntry
+      )
+    );
   }
-  function selectTimeEntryForEditing(index: number): void {
-    setSelectedIndex(index);
+  function selectTimeEntryForEditing(id: string): void {
+    setSelectedId(id);
   }
   let mainContent = null;
   switch (selectedTab) {
@@ -52,15 +52,23 @@ function App() {
       );
       break;
     case "EDIT":
-      if (selectedIndex !== -1)
+      if (selectedId !== "") {
+        const selectedTimeEntry = timeEntries.find(
+          (timeEntry) => timeEntry.id === selectedId
+        );
+        if (!selectedTimeEntry) {
+          console.log("Time entry not found for editing");
+          return null;
+        }
         mainContent = (
           <TimeEntryForm
             createNewEntry={false}
             handleButtonPress={editTimeEntry}
             categories={categories}
-            startingTimeEntry={timeEntries[selectedIndex]}
+            startingTimeEntry={selectedTimeEntry}
           />
         );
+      }
       break;
     case "IMPORT":
       mainContent = (
@@ -79,7 +87,7 @@ function App() {
       <NavBar
         tabName={selectedTab}
         setTabName={(tabName) => {
-          setSelectedIndex(-1);
+          setSelectedId("");
           setSelectedTab(tabName);
         }}
       />
@@ -92,10 +100,10 @@ function App() {
           selectedTab === "EDIT"
             ? selectTimeEntryForEditing
             : selectedTab === "DELETE"
-            ? deleteTimeEntries
+            ? deleteTimeEntry
             : () => {}
         }
-        selectedIndex={selectedIndex}
+        selectedId={selectedId}
       />
     </>
   );

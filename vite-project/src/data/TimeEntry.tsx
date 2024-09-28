@@ -1,8 +1,10 @@
 import { TimeEntryResult, TimeValueResult } from "./LoadTypes";
 import { convertStringToTimeValue, determineDuration } from "./TimeValue";
 import { TimeValue } from "./TimeValue";
+import { v4 as uuid } from "uuid";
 
 export type TimeEntry = {
+  id: string;
   description: string;
   category: string;
   date: string;
@@ -28,6 +30,7 @@ export function createTimeEntry(
   if (determineDuration(startTime.value, endTime.value) <= 0)
     return { error: true, errorMessage: "End time is not after start time" };
   const timeEntry: TimeEntry = {
+    id: uuid(),
     description,
     category,
     date,
