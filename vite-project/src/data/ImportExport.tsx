@@ -2,6 +2,7 @@ import { TimeEntry } from "./TimeEntry";
 import { convertStringToTimeValue, formatTimeValue24Hour } from "./TimeValue";
 import { saveAs } from "file-saver";
 import { TimeEntryListResult, TimeValueResult } from "./LoadTypes";
+import { v4 as uuid } from "uuid";
 
 type fileEventHandler = (e: ProgressEvent<FileReader>) => void;
 
@@ -37,6 +38,7 @@ function convertTextToTimeEntries(text: string): TimeEntryListResult {
     if (endTime.error)
       return { error: true, errorMessage: "Could not convert end time" };
     const timeEntry: TimeEntry = {
+      id: uuid(),
       category,
       description,
       date,
