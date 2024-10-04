@@ -28,7 +28,11 @@ function TimeEntryForm(props: Props) {
       setCategory(startingTimeEntry.category);
       setDate(startingTimeEntry.date);
       setStartTime(formatTimeValue24Hour(startingTimeEntry.startTime));
-      setEndTime(formatTimeValue24Hour(startingTimeEntry.endTime));
+      let formattedEndTime: string = formatTimeValue24Hour(
+        startingTimeEntry.endTime
+      );
+      if (formattedEndTime === "24:00") formattedEndTime = "00:00";
+      setEndTime(formattedEndTime);
     } else {
       setDescription("");
       setCategory(categories[0]);
