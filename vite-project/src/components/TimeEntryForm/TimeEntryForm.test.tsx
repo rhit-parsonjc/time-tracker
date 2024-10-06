@@ -4,11 +4,11 @@ import TimeEntryForm from "./TimeEntryForm";
 import { TimeEntry } from "../../data/TimeEntry";
 
 type Inputs = {
-  descriptionInput: HTMLElement;
-  categoryInput: HTMLElement;
-  dateInput: HTMLElement;
-  startTimeInput: HTMLElement;
-  endTimeInput: HTMLElement;
+  descriptionInput: HTMLInputElement;
+  categoryInput: HTMLInputElement;
+  dateInput: HTMLInputElement;
+  startTimeInput: HTMLInputElement;
+  endTimeInput: HTMLInputElement;
   submitButton: HTMLElement;
   user: UserEvent;
 };
@@ -50,8 +50,7 @@ describe("Time Entry Form", () => {
       submitButton,
       user,
     } = renderComponent((timeEntry) => {
-      console.log("Called");
-      lastTimeEntry = { ...timeEntry, id: undefined };
+      lastTimeEntry = { ...timeEntry, id: "" };
     });
     await user.type(descriptionInput, "Working on C");
     screen.getByDisplayValue("Working on C");
@@ -71,6 +70,7 @@ describe("Time Entry Form", () => {
     screen.getByDisplayValue("02:00");
     await user.click(submitButton);
     expect(lastTimeEntry).toEqual({
+      id: "",
       description: "Working on C",
       category: "C",
       date: "2024-10-05",
