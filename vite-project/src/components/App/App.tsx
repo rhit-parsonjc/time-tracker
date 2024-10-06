@@ -33,11 +33,14 @@ function App() {
   function editTimeEntry(timeEntry: TimeEntry): void {
     setTimeEntries((prevTimeEntries) =>
       prevTimeEntries.map((prevTimeEntry) =>
-        prevTimeEntry.id === selectedId ? timeEntry : prevTimeEntry
+        prevTimeEntry.id === selectedId
+          ? { ...timeEntry, id: prevTimeEntry.id }
+          : prevTimeEntry
       )
     );
   }
   function selectTimeEntryForEditing(id: string): void {
+    console.log({ timeEntries, id });
     setSelectedId(id);
   }
   let mainContent = null;
@@ -56,6 +59,7 @@ function App() {
         const selectedTimeEntry = timeEntries.find(
           (timeEntry) => timeEntry.id === selectedId
         );
+        console.log({ selectedId, selectedTimeEntry, timeEntries });
         if (!selectedTimeEntry) {
           console.log("Time entry not found for editing");
           return null;
