@@ -1,8 +1,5 @@
 name: Perform Automated Tests and Linting
 on: [push]
-defaults:
-  run:
-    working-directory: ./vite-project
 jobs:
   test:
     name: Vitest
@@ -10,23 +7,27 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        working-directory: .
       - name: Setup node
         uses: actions/setup-node@v4
+        working-directory: ./vite-project
       - name: Install dependencies
         run: npm ci
+        working-directory: ./vite-project
       - name: Run tests
         run: npm run test
+        working-directory: ./vite-project
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        working-directory: .
       - name: Setup node
         uses: actions/setup-node@v4
+        working-directory: ./vite-project
       - name: Install dependencies
         run: npm ci
+        working-directory: ./vite-project
       - name: Run lint
         run: npm run lint
+        working-directory: ./vite-project
