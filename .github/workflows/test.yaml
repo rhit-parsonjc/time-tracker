@@ -9,7 +9,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v4
-        working-directory: ./vite-project
       - name: Install dependencies
         run: npm ci
         working-directory: ./vite-project
@@ -17,14 +16,13 @@ jobs:
         run: npm run test
         working-directory: ./vite-project
   lint:
-    name: Lint
+    name: ESLint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v4
-        working-directory: ./vite-project
       - name: Install dependencies
         run: npm ci
         working-directory: ./vite-project
