@@ -3,14 +3,14 @@ import { convertStringToTimeValue, determineDuration } from "./TimeValue";
 import { TimeValue } from "./TimeValue";
 import { v4 as uuid } from "uuid";
 
-export type TimeEntry = {
+export interface TimeEntry {
   id: string;
   description: string;
   category: string;
   date: string;
   startTime: TimeValue;
   endTime: TimeValue;
-};
+}
 
 export function createTimeEntry(
   description: string,

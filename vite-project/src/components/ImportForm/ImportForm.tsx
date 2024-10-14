@@ -4,9 +4,9 @@ import { importTimeEntries } from "../../data/ImportExport";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
 import styles from "./ImportForm.module.css";
 
-type Props = {
+interface Props {
   modifyTimeEntries: (timeEntries: TimeEntry[]) => void;
-};
+}
 
 function ImportExportForm(props: Props) {
   const { modifyTimeEntries } = props;

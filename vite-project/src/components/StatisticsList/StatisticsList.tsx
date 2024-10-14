@@ -3,15 +3,15 @@ import { determineDuration, formatDuration } from "../../data/TimeValue";
 import styles from "./StatisticsList.module.css";
 import { useState } from "react";
 
-type Props = {
+interface Props {
   categories: string[];
   timeEntries: TimeEntry[];
-};
+}
 
-type Stats = {
+interface Stats {
   date: string;
-  timesPerCategory: any;
-};
+  timesPerCategory: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+}
 
 function StatisticsList(props: Props) {
   const { categories, timeEntries } = props;
@@ -19,7 +19,7 @@ function StatisticsList(props: Props) {
   const sortedTimeEntries: TimeEntry[] = [...timeEntries].sort(sortTimeEntries);
   const [selectedRow, setSelectedRow] = useState<number>(-1);
 
-  let lastDate: string = "";
+  let lastDate = "";
   const statsList: Stats[] = [];
   for (const sortedTimeEntry of sortedTimeEntries) {
     const { date, category, startTime, endTime } = sortedTimeEntry;
@@ -28,14 +28,14 @@ function StatisticsList(props: Props) {
       const lastTimeEntry: Stats = statsList[statsList.length - 1];
       lastTimeEntry.timesPerCategory[category] += duration;
     } else {
-      const timesPerCategory: any = {};
+      const timesPerCategory: any = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
       for (const categoryName of categories) timesPerCategory[categoryName] = 0;
       timesPerCategory[category] += duration;
       lastDate = date;
       statsList.push({ date, timesPerCategory });
     }
   }
-  let timesPerCategory =
+  const timesPerCategory =
     selectedRow === -1 ? null : statsList[selectedRow].timesPerCategory;
   return (
     <>

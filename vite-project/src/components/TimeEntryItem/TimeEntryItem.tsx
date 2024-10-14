@@ -8,12 +8,12 @@ import {
 import Icon from "../Icon/Icon";
 import styles from "./TimeEntryItem.module.css";
 
-type Props = {
+interface Props {
   timeEntry: TimeEntry;
   tabName: TabName;
   onClick: () => void;
   selected: boolean;
-};
+}
 
 function TimeEntryItem(props: Props) {
   const { timeEntry, tabName, onClick, selected } = props;

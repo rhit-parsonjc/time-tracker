@@ -10,9 +10,9 @@ export type IconName =
   | "stats"
   | "export"
   | "edit";
-type Props = {
+interface Props {
   iconName: IconName;
-};
+}
 
 function Icon(props: Props) {
   const { iconName } = props;

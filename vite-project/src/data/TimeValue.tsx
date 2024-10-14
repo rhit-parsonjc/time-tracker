@@ -1,10 +1,10 @@
 import { TimeValueResult } from "./LoadTypes";
 import { numberToString } from "./Utilities";
 
-export type TimeValue = {
+export interface TimeValue {
   hours: number;
   minutes: number;
-};
+}
 
 export function convertStringToTimeValue(timeString: string): TimeValueResult {
   const colonIndex: number = timeString.indexOf(":");
@@ -12,22 +12,24 @@ export function convertStringToTimeValue(timeString: string): TimeValueResult {
     return { error: true, errorMessage: "Could not find colon in string" };
   const hourString: string = timeString.substring(0, colonIndex);
   const minuteString: string = timeString.substring(colonIndex + 1);
-  let hours: number = 0;
+  let hours = 0;
   try {
     hours = parseInt(hourString);
     if (hours < 0 || hours > 24)
       return { error: true, errorMessage: "Hour value out of range" };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return {
       error: true,
       errorMessage: "Could not parse portion before colon as an hour",
     };
   }
-  let minutes: number = 0;
+  let minutes = 0;
   try {
     minutes = parseInt(minuteString);
     if (minutes < 0 || minutes >= 60 || (hours === 24 && minutes !== 0))
       return { error: true, errorMessage: "Minute value out of range" };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return {
       error: true,

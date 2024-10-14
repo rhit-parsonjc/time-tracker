@@ -5,12 +5,12 @@ import Icon from "../Icon/Icon";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
 import styles from "./TimeEntryList.module.css";
 
-type Props = {
+interface Props {
   timeEntries: TimeEntry[];
   tabName: TabName;
-  modifyTimeEntry: (id: string) => void;
+  modifyTimeEntry: ((id: string) => void) | null;
   selectedId: string;
-};
+}
 
 function TimeEntryList(props: Props) {
   const { timeEntries, tabName, modifyTimeEntry, selectedId } = props;
@@ -29,7 +29,11 @@ function TimeEntryList(props: Props) {
           <TimeEntryItem
             timeEntry={timeEntry}
             tabName={tabName}
-            onClick={() => modifyTimeEntry(timeEntry.id)}
+            onClick={() => {
+              if (modifyTimeEntry) {
+                modifyTimeEntry(timeEntry.id);
+              }
+            }}
             selected={selectedId === timeEntry.id}
             key={timeEntry.id}
           />

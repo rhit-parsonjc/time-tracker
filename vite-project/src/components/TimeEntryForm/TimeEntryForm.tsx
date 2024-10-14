@@ -5,12 +5,12 @@ import { TimeEntryResult } from "../../data/LoadTypes";
 import ErrorMessage from "../ErrorMessage/ErrorMesage";
 import { formatTimeValue24Hour } from "../../data/TimeValue";
 
-type Props = {
+interface Props {
   createNewEntry: boolean;
-  handleButtonPress: (timeEntry: TimeEntry) => void;
+  handleButtonPress: ((timeEntry: TimeEntry) => void) | null;
   categories: string[];
   startingTimeEntry?: TimeEntry;
-};
+}
 
 function TimeEntryForm(props: Props) {
   const { createNewEntry, handleButtonPress, categories, startingTimeEntry } =
@@ -42,7 +42,7 @@ function TimeEntryForm(props: Props) {
     }
   }, [startingTimeEntry]);
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const timeEntryResult: TimeEntryResult = createTimeEntry(
       description,
@@ -53,7 +53,9 @@ function TimeEntryForm(props: Props) {
     );
     if (timeEntryResult.error) setErrorMessage(timeEntryResult.errorMessage);
     else {
-      handleButtonPress(timeEntryResult.value);
+      if (handleButtonPress) {
+        handleButtonPress(timeEntryResult.value);
+      }
       if (createNewEntry) {
         setDescription("");
         setStartTime(endTime);

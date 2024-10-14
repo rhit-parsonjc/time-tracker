@@ -12,14 +12,14 @@ export type TabName = "ADD" | "EDIT" | "DELETE" | "IMPORT" | "STATS";
 function App() {
   const [selectedTab, setSelectedTab] = useState<TabName>("ADD");
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
-  const [categories, _] = useState<string[]>([
+  const categories = useState<string[]>([
     "Unknown",
     "Work",
     "Tasks",
     "Fun",
     "Religion",
     "Health",
-  ]);
+  ])[0];
   const [selectedId, setSelectedId] = useState<string>("");
 
   function addTimeEntry(timeEntry: TimeEntry): void {
@@ -105,7 +105,7 @@ function App() {
             ? selectTimeEntryForEditing
             : selectedTab === "DELETE"
             ? deleteTimeEntry
-            : () => {}
+            : null
         }
         selectedId={selectedId}
       />

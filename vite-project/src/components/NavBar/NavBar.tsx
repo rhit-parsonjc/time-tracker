@@ -2,10 +2,10 @@ import { TabName } from "../App/App";
 import NavBarEntry from "../NavBarEntry/NavBarEntry";
 import styles from "./NavBar.module.css";
 
-type Props = {
+interface Props {
   tabName: TabName;
   setTabName: (tabName: TabName) => void;
-};
+}
 
 function NavBar(props: Props) {
   const { tabName, setTabName } = props;

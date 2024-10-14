@@ -3,7 +3,7 @@ import userEvent, { UserEvent } from "@testing-library/user-event";
 import TimeEntryForm from "./TimeEntryForm";
 import { TimeEntry } from "../../data/TimeEntry";
 
-type Inputs = {
+interface Inputs {
   descriptionInput: HTMLInputElement;
   categoryInput: HTMLInputElement;
   dateInput: HTMLInputElement;
@@ -11,18 +11,18 @@ type Inputs = {
   endTimeInput: HTMLInputElement;
   submitButton: HTMLElement;
   user: UserEvent;
-};
+}
 
-type InputTexts = {
+interface InputTexts {
   descriptionText: string;
   categoryText: string;
   dateText: string;
   startTimeText: string;
   endTimeText: string;
-};
+}
 
 function renderComponent(
-  handleButtonPress: (timeEntry: TimeEntry) => void
+  handleButtonPress: ((timeEntry: TimeEntry) => void) | null
 ): Inputs {
   render(
     <TimeEntryForm
@@ -80,7 +80,7 @@ async function enterInformationIntoForm(
 
 describe("Time Entry Form", () => {
   it("renders onto the screen with the proper inputs", () => {
-    renderComponent(() => {});
+    renderComponent(null);
   });
 
   it("can enter a valid time entry", async () => {

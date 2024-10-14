@@ -1,10 +1,10 @@
 import { TimeEntry } from "./TimeEntry";
 import { TimeValue } from "./TimeValue";
 
-export type ErrorResult = {
+interface ErrorResult {
   error: true;
   errorMessage: string;
-};
+}
 
 export type TimeValueResult =
   | {

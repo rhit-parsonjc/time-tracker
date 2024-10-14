@@ -1,12 +1,12 @@
 import Icon, { IconName } from "../Icon/Icon";
 import styles from "./NavBarEntry.module.css";
 
-type Props = {
+interface Props {
   tabLabel: string;
   selectTab: () => void;
   iconName: IconName;
   selected: boolean;
-};
+}
 
 function NavBarEntry(props: Props) {
   const { tabLabel, selectTab, iconName, selected } = props;
