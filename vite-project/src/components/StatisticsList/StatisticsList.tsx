@@ -79,7 +79,7 @@ function StatisticsList(props: Props) {
               width: (timesPerCategory[category] / (24 * 60)) * 100 + "%",
             };
             return (
-              <div style={barStyle} className={styles.barEntry}>
+              <div style={barStyle} className={styles.barEntry} key={category}>
                 <p className={styles.barEntryLabel}>{category}</p>
               </div>
             );
