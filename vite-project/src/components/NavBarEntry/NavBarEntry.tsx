@@ -11,15 +11,17 @@ interface Props {
 function NavBarEntry(props: Props) {
   const { tabLabel, selectTab, iconName, selected } = props;
   return (
-    <li
-      className={selected ? styles.selected : styles.notSelected}
-      onClick={selectTab}
-      id={styles.navBarEntry}
-    >
-      <div id={styles.navBarIcon}>
-        <Icon iconName={iconName} />
-      </div>
-      <h1>{tabLabel}</h1>
+    <li>
+      <button
+        className={selected ? styles.selected : styles.notSelected}
+        onClick={selectTab}
+        id={styles.navBarEntry}
+      >
+        <div id={styles.navBarIcon}>
+          <Icon iconName={iconName} />
+        </div>
+        <h1>{tabLabel}</h1>
+      </button>
     </li>
   );
 }

@@ -10,10 +10,12 @@
   align-items: center;
   justify-content: space-between;
 }
-#timeEntry:hover {
+#timeEntry:hover,
+#timeEntry:focus {
   background-color: hsl(39, 100%, 90%);
 }
-#timeEntry.editable:hover {
+#timeEntry.editable:hover,
+#timeEntry.editable:focus {
   background-color: hsl(39, 100%, 70%);
   border: 5px solid hsl(39, 100%, 50%);
   cursor: pointer;
@@ -22,17 +24,21 @@
   background-color: hsl(39, 100%, 50%);
   border: 5px solid hsl(39, 100%, 50%);
 }
-#timeEntry.deletable:hover {
+#timeEntry.deletable:hover,
+#timeEntry.deletable:focus {
   border: 5px solid gray;
   background-color: lightgray;
   cursor: pointer;
 }
 #timeEntry.deletable:hover .centerIcon,
 #timeEntry.editable:hover .centerIcon,
-#timeEntry.selected .centerIcon {
+#timeEntry.selected .centerIcon,
+#timeEntry.deletable:focus .centerIcon,
+#timeEntry.editable:focus .centerIcon {
   visibility: visible;
 }
-#timeEntry.deletable:hover #timeEntryInfo {
+#timeEntry.deletable:hover #timeEntryInfo,
+#timeEntry.deletable:focus #timeEntryInfo {
   opacity: 0.1;
 }
 #timeEntry .centerIcon {

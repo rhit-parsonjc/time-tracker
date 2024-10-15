@@ -31,6 +31,7 @@ function TimeEntryItem(props: Props) {
             : styles.normal
         }
         onClick={onClick}
+        tabIndex={0}
       >
         {tabName === "DELETE" && (
           <div className={styles.centerIcon}>

@@ -2,7 +2,8 @@
   background-color: hsl(39, 100%, 50%);
 }
 
-.statsTableRow:hover {
+.statsTableRow:hover,
+.statsTableRow:focus {
   background-color: hsl(39, 100%, 90%);
   font-weight: bold;
 }
@@ -34,7 +35,8 @@
   position: relative;
 }
 
-.barEntry:hover {
+.barEntry:hover,
+.barEntry:focus {
   background-color: hsl(39, 100%, 70%);
   font-weight: bold;
 }

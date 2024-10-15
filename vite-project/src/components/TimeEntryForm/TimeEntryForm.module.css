@@ -19,6 +19,7 @@ form {
 .formline > :last-child {
   margin-right: 0;
 }
-.formline:hover * {
+.formline:hover *,
+.formline:focus * {
   font-weight: bold;
 }

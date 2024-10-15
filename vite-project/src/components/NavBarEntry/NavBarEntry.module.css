@@ -3,13 +3,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  border: 0px;
+  background-color: hsl(39, 100%, 90%);
 }
 
 #navBarEntry.selected {
   background-color: hsl(39, 100%, 50%);
 }
 
-#navBarEntry:hover.notSelected {
+#navBarEntry:hover.notSelected,
+#navBarEntry:focus.notSelected {
   background-color: hsl(39, 100%, 70%);
 }
 

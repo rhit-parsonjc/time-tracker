@@ -68,7 +68,7 @@ function TimeEntryForm(props: Props) {
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div className={styles.formline}>
+        <div className={styles.formline} tabIndex={0}>
           <label htmlFor="timeentryformdescription">Description</label>
           <input
             type="text"
@@ -77,7 +77,7 @@ function TimeEntryForm(props: Props) {
             onChange={(e) => setDescription(e.target.value)}
           ></input>
         </div>
-        <div className={styles.formline}>
+        <div className={styles.formline} tabIndex={0}>
           <label htmlFor="timeentryformcategory">Category</label>
           <select
             name="category"
@@ -93,7 +93,7 @@ function TimeEntryForm(props: Props) {
             ))}
           </select>
         </div>
-        <div className={styles.formline}>
+        <div className={styles.formline} tabIndex={0}>
           <label htmlFor="timeentryformdate">Date</label>
           <input
             type="date"
@@ -103,7 +103,7 @@ function TimeEntryForm(props: Props) {
             required
           />
         </div>
-        <div className={styles.formline}>
+        <div className={styles.formline} tabIndex={0}>
           <label htmlFor="timeentryformstarttime">Start Time</label>
           <input
             type="time"

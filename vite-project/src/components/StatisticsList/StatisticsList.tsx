@@ -40,7 +40,7 @@ function StatisticsList(props: Props) {
   return (
     <>
       <table id={styles.statsTable}>
-        <thead id={styles.statsTableHeader}>
+        <thead id={styles.statsTableHeader} tabIndex={0}>
           <tr>
             <th className={styles.statsTableHeaderEntry}>Date</th>
             {[...categories].map((category) => (
@@ -61,6 +61,7 @@ function StatisticsList(props: Props) {
                   ? { backgroundColor: "hsl(39, 100%, 70%)" }
                   : {}
               }
+              tabIndex={0}
             >
               <td className={styles.statsTableDataEntry}>{statsEntry.date}</td>
               {categories.map((category) => (
@@ -79,7 +80,12 @@ function StatisticsList(props: Props) {
               width: (timesPerCategory[category] / (24 * 60)) * 100 + "%",
             };
             return (
-              <div style={barStyle} className={styles.barEntry} key={category}>
+              <div
+                style={barStyle}
+                className={styles.barEntry}
+                key={category}
+                tabIndex={0}
+              >
                 <p className={styles.barEntryLabel}>{category}</p>
               </div>
             );
