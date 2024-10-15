@@ -70,7 +70,7 @@ function App() {
     setTimeEntries((timeEntries) =>
       timeEntries.map((timeEntry) =>
         timeEntry.category === category
-          ? { ...timeEntry, category: "" }
+          ? { ...timeEntry, category: categories[0] }
           : timeEntry
       )
     );

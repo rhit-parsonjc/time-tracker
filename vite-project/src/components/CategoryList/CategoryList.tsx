@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
 import styles from "./CategoryList.module.css";
+import ErrorMessage from "../ErrorMessage/ErrorMesage";
 
 interface Props {
   categories: string[];
@@ -13,10 +14,11 @@ function CategoryList(props: Props) {
   const { categories, addCategory, editCategory, deleteCategory } = props;
   const [category, setCategory] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   return (
     <>
       <ul id={styles.categorylist}>
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <CategoryItem
             categoryName={category}
             onEdit={() => {
@@ -24,12 +26,22 @@ function CategoryList(props: Props) {
               setCategory(category);
             }}
             onDelete={() => deleteCategory(category)}
+            deletable={index !== 0}
           />
         ))}
       </ul>
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (selectedCategory && category === selectedCategory) {
+            setErrorMessage("");
+            return;
+          }
+          if (categories.indexOf(category) !== -1) {
+            setErrorMessage("Category already present");
+            return;
+          }
+          setErrorMessage("");
           if (selectedCategory) {
             editCategory(selectedCategory, category);
           } else {
@@ -50,6 +62,7 @@ function CategoryList(props: Props) {
         />
         <input type="submit" value="Add Category" />
       </form>
+      {errorMessage && <ErrorMessage message={errorMessage} />}
     </>
   );
 }

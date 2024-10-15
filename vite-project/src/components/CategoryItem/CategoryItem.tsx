@@ -6,10 +6,11 @@ interface Props {
   categoryName: string;
   onDelete: () => void;
   onEdit: () => void;
+  deletable: boolean;
 }
 
 function CategoryItem(props: Props) {
-  const { categoryName, onDelete, onEdit } = props;
+  const { categoryName, onDelete, onEdit, deletable } = props;
   return (
     <li>
       <div id={styles.categoryBox} tabIndex={0}>
@@ -30,6 +31,7 @@ function CategoryItem(props: Props) {
             tabIndex={0}
             onClick={onDelete}
             onKeyDown={wrapClickHandler(onDelete)}
+            style={deletable ? {} : { visibility: "hidden" }}
           >
             <Icon iconName="delete" />
           </div>
