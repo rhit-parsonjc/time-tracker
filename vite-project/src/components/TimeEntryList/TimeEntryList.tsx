@@ -4,6 +4,7 @@ import { sortTimeEntries, TimeEntry } from "../../data/TimeEntry";
 import Icon from "../Icon/Icon";
 import TimeEntryItem from "../TimeEntryItem/TimeEntryItem";
 import styles from "./TimeEntryList.module.css";
+import { wrapClickHandler } from "../../data/Utilities";
 
 interface Props {
   timeEntries: TimeEntry[];
@@ -20,6 +21,7 @@ function TimeEntryList(props: Props) {
       <button
         id={styles.exportButton}
         onClick={() => writeTimeEntries(timeEntries)}
+        onKeyDown={wrapClickHandler(() => writeTimeEntries(timeEntries))}
       >
         <Icon iconName="export" />
         &nbsp;Export

@@ -7,6 +7,7 @@ import {
 } from "../../data/TimeValue";
 import Icon from "../Icon/Icon";
 import styles from "./TimeEntryItem.module.css";
+import { wrapClickHandler } from "../../data/Utilities";
 
 interface Props {
   timeEntry: TimeEntry;
@@ -32,6 +33,7 @@ function TimeEntryItem(props: Props) {
         }
         onClick={onClick}
         tabIndex={0}
+        onKeyDown={wrapClickHandler(onClick)}
       >
         {tabName === "DELETE" && (
           <div className={styles.centerIcon}>

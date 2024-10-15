@@ -1,5 +1,6 @@
 import { sortTimeEntries, TimeEntry } from "../../data/TimeEntry";
 import { determineDuration, formatDuration } from "../../data/TimeValue";
+import { wrapClickHandler } from "../../data/Utilities";
 import styles from "./StatisticsList.module.css";
 import { useState } from "react";
 
@@ -56,6 +57,7 @@ function StatisticsList(props: Props) {
               key={statsEntry.date}
               className={styles.statsTableRow}
               onClick={() => setSelectedRow(index)}
+              onKeyDown={wrapClickHandler(() => setSelectedRow(index))}
               style={
                 selectedRow === index
                   ? { backgroundColor: "hsl(39, 100%, 70%)" }

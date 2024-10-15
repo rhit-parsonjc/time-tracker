@@ -1,3 +1,4 @@
+import { wrapClickHandler } from "../../data/Utilities";
 import Icon, { IconName } from "../Icon/Icon";
 import styles from "./NavBarEntry.module.css";
 
@@ -15,6 +16,7 @@ function NavBarEntry(props: Props) {
       <button
         className={selected ? styles.selected : styles.notSelected}
         onClick={selectTab}
+        onKeyDown={wrapClickHandler(selectTab)}
         id={styles.navBarEntry}
       >
         <div id={styles.navBarIcon}>
