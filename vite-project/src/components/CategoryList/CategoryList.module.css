@@ -1,0 +1,14 @@
+#categorylist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#categorynameform {
+  padding: 0;
+}
+#categorynameform > * {
+  margin-right: 0.5em;
+}
+#categorynameform > :last-child {
+  margin-right: 0;
+}

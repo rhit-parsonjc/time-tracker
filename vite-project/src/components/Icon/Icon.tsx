@@ -1,6 +1,5 @@
-import { FiTrash2, FiTable } from "react-icons/fi";
-import { IoAdd } from "react-icons/io5";
-import { CiImport, CiExport } from "react-icons/ci";
+import { FiTrash2, FiTable, FiUpload, FiDownload } from "react-icons/fi";
+import { IoAdd, IoList } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 
 export type IconName =
@@ -9,7 +8,8 @@ export type IconName =
   | "import"
   | "stats"
   | "export"
-  | "edit";
+  | "edit"
+  | "categories";
 interface Props {
   iconName: IconName;
 }
@@ -22,13 +22,15 @@ function Icon(props: Props) {
     case "delete":
       return <FiTrash2 />;
     case "import":
-      return <CiImport />;
+      return <FiUpload />;
     case "stats":
       return <FiTable />;
     case "export":
-      return <CiExport />;
+      return <FiDownload />;
     case "edit":
       return <MdEdit />;
+    case "categories":
+      return <IoList />;
   }
 }
 

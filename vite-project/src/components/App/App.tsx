@@ -6,20 +6,27 @@ import { TimeEntry } from "../../data/TimeEntry";
 import ImportForm from "../ImportForm/ImportForm";
 import NavBar from "../NavBar/NavBar";
 import StatisticsList from "../StatisticsList/StatisticsList";
+import CategoryList from "../CategoryList/CategoryList";
 
-export type TabName = "ADD" | "EDIT" | "DELETE" | "IMPORT" | "STATS";
+export type TabName =
+  | "ADD"
+  | "EDIT"
+  | "DELETE"
+  | "IMPORT"
+  | "STATS"
+  | "CATEGORIES";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState<TabName>("ADD");
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
-  const categories = useState<string[]>([
+  const [categories, setCategories] = useState<string[]>([
     "Unknown",
     "Work",
     "Tasks",
     "Fun",
     "Religion",
     "Health",
-  ])[0];
+  ]);
   const [selectedId, setSelectedId] = useState<string>("");
 
   function addTimeEntry(timeEntry: TimeEntry): void {
@@ -40,8 +47,36 @@ function App() {
     );
   }
   function selectTimeEntryForEditing(id: string): void {
-    console.log({ timeEntries, id });
     setSelectedId(id);
+  }
+  function addCategory(category: string): void {
+    setCategories((categories) => [...categories, category]);
+  }
+  function editCategory(oldCategory: string, newCategory: string): void {
+    setTimeEntries((timeEntries) =>
+      timeEntries.map((timeEntry) =>
+        timeEntry.category === oldCategory
+          ? { ...timeEntry, category: newCategory }
+          : timeEntry
+      )
+    );
+    setCategories((categories) =>
+      categories.map((category) =>
+        category === oldCategory ? newCategory : category
+      )
+    );
+  }
+  function deleteCategory(category: string): void {
+    setTimeEntries((timeEntries) =>
+      timeEntries.map((timeEntry) =>
+        timeEntry.category === category
+          ? { ...timeEntry, category: "" }
+          : timeEntry
+      )
+    );
+    setCategories((categories) =>
+      categories.filter((categoryName) => categoryName !== category)
+    );
   }
   let mainContent = null;
   switch (selectedTab) {
@@ -84,6 +119,16 @@ function App() {
     case "STATS":
       mainContent = (
         <StatisticsList timeEntries={timeEntries} categories={categories} />
+      );
+      break;
+    case "CATEGORIES":
+      mainContent = (
+        <CategoryList
+          categories={categories}
+          addCategory={addCategory}
+          editCategory={editCategory}
+          deleteCategory={deleteCategory}
+        />
       );
   }
   return (

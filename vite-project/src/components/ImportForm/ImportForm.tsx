@@ -29,7 +29,7 @@ function ImportExportForm(props: Props) {
   }
 
   return (
-    <div>
+    <div id={styles.importform}>
       <input
         className={styles.importButton}
         type="file"

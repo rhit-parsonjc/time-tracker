@@ -67,7 +67,7 @@ function TimeEntryForm(props: Props) {
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} id={styles.timeentryform}>
         <div className={styles.formline} tabIndex={0}>
           <label htmlFor="timeentryformdescription">Description</label>
           <input

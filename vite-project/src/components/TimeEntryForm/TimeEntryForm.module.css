@@ -23,3 +23,6 @@ form {
 .formline:focus * {
   font-weight: bold;
 }
+#timeentryform {
+  padding: 0;
+}

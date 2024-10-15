@@ -11,7 +11,7 @@ function NavBar(props: Props) {
   const { tabName, setTabName } = props;
   return (
     <nav id={styles.navbar}>
-      <ul>
+      <ul style={{ margin: "0" }}>
         <NavBarEntry
           selectTab={() => setTabName("ADD")}
           iconName="add"
@@ -41,6 +41,12 @@ function NavBar(props: Props) {
           iconName="stats"
           selected={tabName === "STATS"}
           tabLabel="View Statistics"
+        />
+        <NavBarEntry
+          selectTab={() => setTabName("CATEGORIES")}
+          iconName="categories"
+          selected={tabName === "CATEGORIES"}
+          tabLabel="Change Categories"
         />
       </ul>
     </nav>
