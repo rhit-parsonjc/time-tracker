@@ -142,4 +142,20 @@ describe("Time Entry Form", () => {
     expect(lastTimeEntry).toBeNull();
     screen.getByText(/end time is not after start time/i);
   });
+
+  it("will display an error if the start time is the same as the end time", async () => {
+    let lastTimeEntry: TimeEntry | null = null;
+    const inputs = renderComponent((timeEntry) => {
+      lastTimeEntry = { ...timeEntry, id: "" };
+    });
+    await enterInformationIntoForm(inputs, {
+      descriptionText: "B-related work",
+      categoryText: "B",
+      dateText: "2022-05-07",
+      startTimeText: "08:39",
+      endTimeText: "08:39",
+    });
+    expect(lastTimeEntry).toBeNull();
+    screen.getByText(/end time is not after start time/i);
+  });
 });
