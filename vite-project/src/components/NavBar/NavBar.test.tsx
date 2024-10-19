@@ -42,7 +42,6 @@ describe("NavBar tests", () => {
   it("allows switching between tabs", async () => {
     const {
       getSelectedTab,
-      addTab,
       editTab,
       deleteTab,
       importTab,
