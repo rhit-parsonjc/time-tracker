@@ -18,15 +18,16 @@ function TimeEntryList(props: Props) {
   const sortedTimeEntries: TimeEntry[] = [...timeEntries].sort(sortTimeEntries);
   return (
     <>
+      <h1 style={{ fontSize: "2em" }}>List of Entries</h1>
       <button
         id={styles.exportButton}
         onClick={() => writeTimeEntries(timeEntries)}
         onKeyDown={wrapClickHandler(() => writeTimeEntries(timeEntries))}
       >
         <Icon iconName="export" />
-        &nbsp;Export
+        <p style={{ fontSize: "1rem" }}>&nbsp;Export</p>
       </button>
-      <ul id={styles.timeentrylist}>
+      <ul id={styles.timeEntryList}>
         {sortedTimeEntries.map((timeEntry) => (
           <TimeEntryItem
             timeEntry={timeEntry}

@@ -2,7 +2,7 @@
   padding: 0.5em;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   border: 0px;
   background-color: hsl(39, 100%, 90%);
 }
@@ -18,13 +18,14 @@
 
 #navBarIcon {
   margin-right: 0.5em;
+  font-size: 1.3rem;
 }
 
 #navBarEntry.notSelected h1 {
   display: none;
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 1200px) {
   #navBarEntry.notSelected h1 {
     display: block;
   }

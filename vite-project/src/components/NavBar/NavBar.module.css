@@ -1,7 +1,7 @@
-#navbar {
+#navBar {
   background-color: hsl(39, 100%, 90%);
 }
-#navbar > ul {
+#navBar > ul {
   list-style-type: none;
   padding: 0;
   display: flex;

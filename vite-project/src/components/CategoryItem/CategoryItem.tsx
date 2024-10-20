@@ -14,7 +14,7 @@ function CategoryItem(props: Props) {
   return (
     <li>
       <div id={styles.categoryBox} tabIndex={0}>
-        <p>{categoryName}</p>
+        <p style={{ fontSize: "1.25rem" }}>{categoryName}</p>
         <div id={styles.icons}>
           <button
             id={styles.editIcon}
@@ -24,7 +24,7 @@ function CategoryItem(props: Props) {
             onKeyDown={wrapClickHandler(onEdit)}
           >
             <Icon iconName="edit" />
-            <p style={{ fontSize: "0.7em" }}>Edit</p>
+            <p style={{ fontSize: "0.7rem" }}>Edit</p>
           </button>
           <button
             id={styles.deleteIcon}
@@ -35,7 +35,7 @@ function CategoryItem(props: Props) {
             style={deletable ? {} : { visibility: "hidden" }}
           >
             <Icon iconName="delete" />
-            <p style={{ fontSize: "0.7em" }}>Delete</p>
+            <p style={{ fontSize: "0.7rem" }}>Delete</p>
           </button>
         </div>
       </div>

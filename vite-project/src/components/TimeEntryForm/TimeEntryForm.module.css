@@ -1,28 +1,28 @@
 input,
 select {
   font-family: Verdana, sans-serif;
-  font-size: 1em;
+  font-size: 1rem;
 }
 label {
   font-family: Georgia, serif;
-  font-size: 1em;
+  font-size: 1rem;
 }
 form {
   padding: 1em;
 }
-.formline {
+.formLine {
   padding: 0.5em;
 }
-.formline > * {
+.formLine > * {
   margin-right: 0.5em;
 }
-.formline > :last-child {
+.formLine > :last-child {
   margin-right: 0;
 }
-.formline:hover *,
-.formline:focus * {
+.formLine:hover *,
+.formLine:focus * {
   font-weight: bold;
 }
-#timeentryform {
+#timeEntryForm {
   padding: 0;
 }

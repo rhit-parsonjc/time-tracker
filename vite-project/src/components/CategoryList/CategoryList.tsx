@@ -17,7 +17,7 @@ function CategoryList(props: Props) {
   const [errorMessage, setErrorMessage] = useState<string>("");
   return (
     <>
-      <ul id={styles.categorylist}>
+      <ul id={styles.categoryList}>
         {categories.map((category, index) => (
           <CategoryItem
             categoryName={category}
@@ -50,17 +50,24 @@ function CategoryList(props: Props) {
           setCategory("");
           setSelectedCategory(null);
         }}
-        id={styles.categorynameform}
+        id={styles.categoryNameForm}
       >
-        <label htmlFor="categoryformcategoryname">Category Name</label>
+        <label htmlFor="categoryformcategoryname" style={{ fontSize: "1rem" }}>
+          Category Name
+        </label>
         <input
           type="text"
           id="categoryformcategoryname"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          style={{ fontSize: "1rem" }}
           required
         />
-        <input type="submit" value="Add Category" />
+        <input
+          type="submit"
+          value="Add Category"
+          style={{ fontSize: "1rem" }}
+        />
       </form>
       {errorMessage && <ErrorMessage message={errorMessage} />}
     </>

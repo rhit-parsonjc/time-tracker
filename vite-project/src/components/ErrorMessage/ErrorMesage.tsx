@@ -6,6 +6,6 @@ interface Props {
 
 function ErrorMessage(props: Props) {
   const { message } = props;
-  return <p id={styles.errormessage}>{message}</p>;
+  return <p id={styles.errorMessage}>{message}</p>;
 }
 export default ErrorMessage;

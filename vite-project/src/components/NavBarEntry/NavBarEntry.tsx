@@ -22,7 +22,7 @@ function NavBarEntry(props: Props) {
         <div id={styles.navBarIcon}>
           <Icon iconName={iconName} />
         </div>
-        <h1>{tabLabel}</h1>
+        <h1 style={{ fontSize: "1.6rem" }}>{tabLabel}</h1>
       </button>
     </li>
   );

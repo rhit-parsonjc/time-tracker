@@ -17,8 +17,17 @@
 
 .statsTableHeaderEntry,
 .statsTableDataEntry {
-  padding: 1em;
   text-align: center;
+}
+
+.statsTableHeaderEntry {
+  font-size: 1.5rem;
+  padding: 0.2em;
+}
+
+.statsTableDataEntry {
+  padding: 0.5em;
+  font-size: 1rem;
 }
 
 #barGraph {
@@ -45,6 +54,7 @@
 .barEntryLabel {
   position: absolute;
   left: 50%;
+  font-size: 1.2rem;
 }
 
 .barEntry:nth-child(odd) .barEntryLabel {

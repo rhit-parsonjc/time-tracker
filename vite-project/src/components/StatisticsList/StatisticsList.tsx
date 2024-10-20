@@ -54,21 +54,23 @@ function StatisticsList(props: Props) {
       </table>
       {timesPerCategory && (
         <article id={styles.barGraph}>
-          {categories.map((category) => {
-            const barStyle = {
-              width: (timesPerCategory[category] / (24 * 60)) * 100 + "%",
-            };
-            return (
-              <div
-                style={barStyle}
-                className={styles.barEntry}
-                key={category}
-                tabIndex={0}
-              >
-                <p className={styles.barEntryLabel}>{category}</p>
-              </div>
-            );
-          })}
+          {categories
+            .filter((category) => timesPerCategory[category] > 0)
+            .map((category) => {
+              const barStyle = {
+                width: (timesPerCategory[category] / (24 * 60)) * 100 + "%",
+              };
+              return (
+                <div
+                  style={barStyle}
+                  className={styles.barEntry}
+                  key={category}
+                  tabIndex={0}
+                >
+                  <p className={styles.barEntryLabel}>{category}</p>
+                </div>
+              );
+            })}
         </article>
       )}
     </>

@@ -141,7 +141,6 @@ function App() {
         }}
       />
       {mainContent}
-      <h1>List of Entries</h1>
       <TimeEntryList
         timeEntries={timeEntries}
         tabName={selectedTab}

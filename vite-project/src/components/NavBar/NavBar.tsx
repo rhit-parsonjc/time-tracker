@@ -10,7 +10,7 @@ interface Props {
 function NavBar(props: Props) {
   const { tabName, setTabName } = props;
   return (
-    <nav id={styles.navbar}>
+    <nav id={styles.navBar}>
       <ul style={{ margin: "0" }}>
         <NavBarEntry
           selectTab={() => setTabName("ADD")}

@@ -1,14 +1,14 @@
-#categorylist {
+#categoryList {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-#categorynameform {
+#categoryNameForm {
   padding: 0;
 }
-#categorynameform > * {
+#categoryNameForm > * {
   margin-right: 0.5em;
 }
-#categorynameform > :last-child {
+#categoryNameForm > :last-child {
   margin-right: 0;
 }

@@ -4,6 +4,9 @@
   border-radius: 1em;
   border: 3px solid hsl(39, 100%, 70%);
   position: relative;
+  background-color: white;
+  display: block;
+  width: 100%;
 }
 #timeEntryInfo {
   display: flex;
@@ -47,6 +50,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   visibility: hidden;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+#timeEntry .centerIcon p {
+  font-size: 0.8rem;
+  margin-left: 0.5em;
 }
 #category {
   font-weight: bold;
