@@ -135,6 +135,7 @@ function App() {
       mainContent = (
         <CustomForm
           initialFormValues={initialAddFormValues}
+          initialFormBooleans={[]}
           onSubmit={(values: string[]) => {
             const timeEntryResult: TimeEntryResult = createTimeEntry(
               values[0], // Description
@@ -152,11 +153,13 @@ function App() {
             return {
               success: true,
               newValues: ["", values[1], values[2], values[4], "00:00"],
+              newBooleans: [],
             };
           }}
           formInputLines={timeEntryFormLines}
           categories={categories}
           submitButtonName="Add Entry"
+          submitButtonIcon="add"
           timeEntryId={null}
         />
       );
@@ -184,6 +187,7 @@ function App() {
               formattedStartTime,
               formattedEndTime,
             ]}
+            initialFormBooleans={[]}
             onSubmit={(values: string[]) => {
               const timeEntryResult: TimeEntryResult = createTimeEntry(
                 values[0], // Description
@@ -201,11 +205,13 @@ function App() {
               return {
                 success: true,
                 newValues: [...values],
+                newBooleans: [],
               };
             }}
             formInputLines={timeEntryFormLines}
             categories={categories}
             submitButtonName="Edit Entry"
+            submitButtonIcon="edit"
             timeEntryId={selectedTimeEntry.id}
           />
         );
@@ -254,6 +260,7 @@ function App() {
             : null
         }
         selectedId={selectedId}
+        categories={categories}
       />
     </>
   );

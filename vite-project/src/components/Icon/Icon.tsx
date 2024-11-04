@@ -1,6 +1,6 @@
 import { FiTrash2, FiTable, FiUpload, FiDownload } from "react-icons/fi";
 import { IoAdd, IoList } from "react-icons/io5";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdFilterAlt } from "react-icons/md";
 
 export type IconName =
   | "add"
@@ -9,7 +9,8 @@ export type IconName =
   | "stats"
   | "export"
   | "edit"
-  | "categories";
+  | "categories"
+  | "filter";
 interface Props {
   iconName: IconName;
 }
@@ -31,6 +32,8 @@ function Icon(props: Props) {
       return <MdEdit />;
     case "categories":
       return <IoList />;
+    case "filter":
+      return <MdFilterAlt />;
   }
 }
 
