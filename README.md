@@ -6,6 +6,7 @@ This Time Tracker App allows you to:
 - Specify which categories to use
 - Import and export data from the file system
 - View aggregate statistics regarding time records in a table and bar chart
+- Have data stored locally to save it even after the tab closes
 
 ## References
 

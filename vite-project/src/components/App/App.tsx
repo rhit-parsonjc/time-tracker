@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import TimeEntryList from "../TimeEntryList/TimeEntryList";
 import { createTimeEntry, TimeEntry } from "../../data/TimeEntry";
@@ -30,6 +30,34 @@ function App() {
     "Health",
   ]);
   const [selectedId, setSelectedId] = useState<string>("");
+  const [justLoaded, setJustLoaded] = useState<boolean>(true);
+
+  function getData() {
+    const timeEntriesJSON = localStorage.getItem("timeEntries");
+    if (timeEntriesJSON) {
+      setTimeEntries(JSON.parse(timeEntriesJSON));
+    }
+    const categoriesJSON = localStorage.getItem("categories");
+    if (categoriesJSON) {
+      setCategories(JSON.parse(categoriesJSON));
+    }
+  }
+
+  useEffect(() => {
+    if (justLoaded) {
+      getData();
+      setJustLoaded(false);
+    } else {
+      saveData();
+    }
+  }, [timeEntries, categories]);
+
+  function saveData() {
+    const timeEntriesJSON = JSON.stringify(timeEntries);
+    const categoriesJSON = JSON.stringify(categories);
+    localStorage.setItem("timeEntries", timeEntriesJSON);
+    localStorage.setItem("categories", categoriesJSON);
+  }
 
   function addTimeEntry(timeEntry: TimeEntry): void {
     setTimeEntries((prevTimeEntries) => [...prevTimeEntries, timeEntry]);
