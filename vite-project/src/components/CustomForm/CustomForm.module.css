@@ -17,4 +17,12 @@
 #submitButton {
   font-family: Verdana, sans-serif;
   font-size: 1rem;
+  background-color: white;
+  border: 3px solid hsl(39, 100%, 70%);
+  border-radius: 1em;
+}
+#submitButton:hover,
+#submitButton:focus {
+  background-color: hsl(39, 100%, 70%);
+  border: 3px solid hsl(39, 100%, 50%);
 }

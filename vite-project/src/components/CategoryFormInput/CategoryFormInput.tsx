@@ -17,7 +17,9 @@ function CategoryFormInput(props: Props) {
   }, [initialCategory]);
   return (
     <>
-      <label htmlFor={id}>Category</label>
+      <label htmlFor={id} className={styles.label}>
+        Category
+      </label>
       <select
         name="category"
         id={id}

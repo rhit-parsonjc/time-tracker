@@ -8,4 +8,12 @@
   font-size: 2rem;
   display: flex;
   align-items: center;
+  background-color: white;
+  border: 3px solid hsl(39, 100%, 70%);
+  border-radius: 1em;
+}
+#exportButton:hover,
+#exportButton:focus {
+  background-color: hsl(39, 100%, 70%);
+  border: 3px solid hsl(39, 100%, 50%);
 }
