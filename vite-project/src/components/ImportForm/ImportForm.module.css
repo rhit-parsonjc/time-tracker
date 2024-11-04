@@ -1,3 +1,7 @@
 #importForm {
   margin-top: 0.5em;
 }
+#fileImportForm {
+  font-size: 1rem;
+  font-family: Verdana, sans-serif;
+}

@@ -30,7 +30,11 @@ function ImportExportForm(props: Props) {
 
   return (
     <div id={styles.importForm}>
-      <input type="file" onChange={handleFileImport} />
+      <input
+        type="file"
+        onChange={handleFileImport}
+        id={styles.fileImportForm}
+      />
       <ErrorMessage message={timeEntryErrorMsg} />
     </div>
   );
