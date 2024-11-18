@@ -6,10 +6,11 @@ import styles from "./ImportForm.module.css";
 
 interface Props {
   modifyTimeEntries: (timeEntries: TimeEntry[]) => void;
+  modifyCategories: (categories: string[]) => void;
 }
 
 function ImportExportForm(props: Props) {
-  const { modifyTimeEntries } = props;
+  const { modifyTimeEntries, modifyCategories } = props;
   const [timeEntryErrorMsg, setTimeEntryErrorMsg] = useState<string>("");
 
   function handleFileImport(e: React.ChangeEvent<HTMLInputElement>) {
@@ -17,8 +18,9 @@ function ImportExportForm(props: Props) {
     if (fileList) {
       importTimeEntries(
         fileList[0],
-        (timeEntries) => {
+        (timeEntries, categories) => {
           modifyTimeEntries(timeEntries);
+          modifyCategories(categories);
           setTimeEntryErrorMsg("");
         },
         (errorMsg) => setTimeEntryErrorMsg(errorMsg)

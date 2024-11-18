@@ -13,10 +13,13 @@ export type TimeValueResult =
     }
   | ErrorResult;
 
-export type TimeEntryListResult =
+export type TimeEntryListAndCategoriesResult =
   | {
       error: false;
-      value: TimeEntry[];
+      value: {
+        timeEntries: TimeEntry[];
+        categories: string[];
+      };
     }
   | ErrorResult;
 

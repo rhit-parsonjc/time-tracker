@@ -21,14 +21,7 @@ export type TabName =
 function App() {
   const [selectedTab, setSelectedTab] = useState<TabName>("ADD");
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
-  const [categories, setCategories] = useState<string[]>([
-    "Unknown",
-    "Work",
-    "Tasks",
-    "Fun",
-    "Religion",
-    "Health",
-  ]);
+  const [categories, setCategories] = useState<string[]>(["Unknown"]);
   const [selectedId, setSelectedId] = useState<string>("");
   const [justLoaded, setJustLoaded] = useState<boolean>(true);
 
@@ -249,6 +242,7 @@ function App() {
       mainContent = (
         <ImportForm
           modifyTimeEntries={(newTimeEntries) => setTimeEntries(newTimeEntries)}
+          modifyCategories={(newCategories) => setCategories(newCategories)}
         />
       );
       break;
@@ -290,6 +284,28 @@ function App() {
         selectedId={selectedId}
         categories={categories}
       />
+      <footer>
+        <p>
+          This site uses local storage to keep track of data. Press this button
+          to reset data:
+        </p>
+        <button
+          id="resetAllDataButton"
+          onClick={() => {
+            let resetData: boolean = window.confirm(
+              "Are you sure you want to reset all data?"
+            );
+            if (resetData) {
+              localStorage.removeItem("timeEntries");
+              localStorage.removeItem("categories");
+              setTimeEntries([]);
+              setCategories(["Unknown"]);
+            }
+          }}
+        >
+          Reset All Data
+        </button>
+      </footer>
     </>
   );
 }

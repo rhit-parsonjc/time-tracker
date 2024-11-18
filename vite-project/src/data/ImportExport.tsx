@@ -1,7 +1,7 @@
 import { TimeEntry } from "./TimeEntry";
 import { convertStringToTimeValue, formatTimeValue24Hour } from "./TimeValue";
 import { saveAs } from "file-saver";
-import { TimeEntryListResult, TimeValueResult } from "./LoadTypes";
+import { TimeEntryListAndCategoriesResult, TimeValueResult } from "./LoadTypes";
 import { v4 as uuid } from "uuid";
 
 type fileEventHandler = (e: ProgressEvent<FileReader>) => void;
@@ -17,9 +17,12 @@ function readTextFromFile(
   reader.readAsText(file);
 }
 
-function convertTextToTimeEntries(text: string): TimeEntryListResult {
+function convertTextToTimeEntries(
+  text: string
+): TimeEntryListAndCategoriesResult {
   const lines: string[] = text.split(/\r?\n/);
   const timeEntries: TimeEntry[] = [];
+  const categories: string[] = ["Unknown"];
   for (const line of lines) {
     if (line === "") continue;
     const tabSeparatedComponents: string[] = line.split("\t");
@@ -30,6 +33,7 @@ function convertTextToTimeEntries(text: string): TimeEntryListResult {
       };
     const [category, description, date, startTimeString, endTimeString] =
       tabSeparatedComponents;
+    if (!categories.includes(category)) categories.push(category);
     const startTime: TimeValueResult =
       convertStringToTimeValue(startTimeString);
     if (startTime.error)
@@ -47,12 +51,15 @@ function convertTextToTimeEntries(text: string): TimeEntryListResult {
     };
     timeEntries.push(timeEntry);
   }
-  return { error: false, value: timeEntries };
+  categories.shift();
+  categories.sort();
+  categories.unshift("Unknown");
+  return { error: false, value: { timeEntries, categories } };
 }
 
 export function importTimeEntries(
   file: File,
-  onLoad: (timeEntries: TimeEntry[]) => void,
+  onLoad: (timeEntries: TimeEntry[], categories: string[]) => void,
   onError: (errorMsg: string) => void
 ): void {
   readTextFromFile(
@@ -60,9 +67,10 @@ export function importTimeEntries(
     (e) => {
       const fileContents = e.target?.result;
       if (typeof fileContents === "string") {
-        const timeEntries: TimeEntryListResult =
+        const timeEntries: TimeEntryListAndCategoriesResult =
           convertTextToTimeEntries(fileContents);
-        if (!timeEntries.error) onLoad(timeEntries.value);
+        if (!timeEntries.error)
+          onLoad(timeEntries.value.timeEntries, timeEntries.value.categories);
         else onError("File not in valid format");
       } else onError("Could not read text from file");
     },

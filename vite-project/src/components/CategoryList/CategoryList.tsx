@@ -27,6 +27,7 @@ function CategoryList(props: Props) {
             }}
             onDelete={() => deleteCategory(category)}
             deletable={index !== 0}
+            key={category}
           />
         ))}
       </ul>
