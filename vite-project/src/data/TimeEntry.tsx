@@ -63,7 +63,7 @@ export function timeEntryOverlap(
   const currTimeEntryStart = convertToNumber(startTime);
   const currTimeEntryEnd = convertToNumber(endTime);
   const overlappingTimeEntries = [];
-  for (let timeEntry of timeEntries) {
+  for (const timeEntry of timeEntries) {
     if (timeEntry.date === currTimeEntryDate && timeEntry.id !== id) {
       const timeEntryStart = convertToNumber(timeEntry.startTime);
       const timeEntryEnd = convertToNumber(timeEntry.endTime);

@@ -326,7 +326,7 @@ function App() {
         <button
           id="resetAllDataButton"
           onClick={() => {
-            let resetData: boolean = window.confirm(
+            const resetData: boolean = window.confirm(
               "Are you sure you want to reset all data?"
             );
             if (resetData) {
