@@ -44,7 +44,6 @@ function TimeEntryList(props: Props) {
         initialFormValues={["", ""]}
         initialFormBooleans={[false, false]}
         onSubmit={(values: string[], booleans: boolean[]) => {
-          console.log(values, booleans);
           setFilterValues(values);
           setFilterBooleans(booleans);
           return {

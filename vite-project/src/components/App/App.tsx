@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import TimeEntryList from "../TimeEntryList/TimeEntryList";
-import { createTimeEntry, TimeEntry } from "../../data/TimeEntry";
+import {
+  createTimeEntry,
+  TimeEntry,
+  timeEntryOverlap,
+} from "../../data/TimeEntry";
 import ImportForm from "../ImportForm/ImportForm";
 import NavBar from "../NavBar/NavBar";
 import StatisticsList from "../StatisticsList/StatisticsList";
@@ -63,9 +67,7 @@ function App() {
   function editTimeEntry(timeEntry: TimeEntry): void {
     setTimeEntries((prevTimeEntries) =>
       prevTimeEntries.map((prevTimeEntry) =>
-        prevTimeEntry.id === selectedId
-          ? { ...timeEntry, id: prevTimeEntry.id }
-          : prevTimeEntry
+        prevTimeEntry.id === selectedId ? timeEntry : prevTimeEntry
       )
     );
   }
@@ -159,6 +161,7 @@ function App() {
           initialFormBooleans={[]}
           onSubmit={(values: string[]) => {
             const timeEntryResult: TimeEntryResult = createTimeEntry(
+              null,
               values[0], // Description
               values[1], // Category
               values[2], // Date
@@ -170,6 +173,21 @@ function App() {
                 success: false,
                 errorMessage: timeEntryResult.errorMessage,
               };
+            const overlappingTimeEntries = timeEntryOverlap(
+              timeEntryResult.value,
+              timeEntries
+            );
+            if (overlappingTimeEntries.length !== 0) {
+              const confirmAdd = window.confirm(
+                "This overlaps with at least one existing time entry. Are you sure you want to add this time entry?"
+              );
+              if (!confirmAdd)
+                return {
+                  success: true,
+                  newValues: [...values],
+                  newBooleans: [],
+                };
+            }
             addTimeEntry(timeEntryResult.value);
             return {
               success: true,
@@ -211,6 +229,7 @@ function App() {
             initialFormBooleans={[]}
             onSubmit={(values: string[]) => {
               const timeEntryResult: TimeEntryResult = createTimeEntry(
+                selectedId,
                 values[0], // Description
                 values[1], // Category
                 values[2], // Date
@@ -222,6 +241,21 @@ function App() {
                   success: false,
                   errorMessage: timeEntryResult.errorMessage,
                 };
+              const overlappingTimeEntries = timeEntryOverlap(
+                timeEntryResult.value,
+                timeEntries
+              );
+              if (overlappingTimeEntries.length !== 0) {
+                const confirmEdit = window.confirm(
+                  "This overlaps with at least one existing time entry. Are you sure you want to edit this time entry?"
+                );
+                if (!confirmEdit)
+                  return {
+                    success: true,
+                    newValues: [...values],
+                    newBooleans: [],
+                  };
+              }
               editTimeEntry(timeEntryResult.value);
               return {
                 success: true,

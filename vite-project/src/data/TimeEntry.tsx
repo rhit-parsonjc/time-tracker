@@ -1,5 +1,9 @@
 import { TimeEntryResult, TimeValueResult } from "./LoadTypes";
-import { convertStringToTimeValue, determineDuration } from "./TimeValue";
+import {
+  convertStringToTimeValue,
+  convertToNumber,
+  determineDuration,
+} from "./TimeValue";
 import { TimeValue } from "./TimeValue";
 import { v4 as uuid } from "uuid";
 
@@ -13,6 +17,7 @@ export interface TimeEntry {
 }
 
 export function createTimeEntry(
+  id: string | null,
   description: string,
   category: string,
   date: string,
@@ -30,7 +35,7 @@ export function createTimeEntry(
   if (determineDuration(startTime.value, endTime.value) <= 0)
     return { error: true, errorMessage: "End time is not after start time" };
   const timeEntry: TimeEntry = {
-    id: uuid(),
+    id: id === null ? uuid() : id,
     description,
     category,
     date,
@@ -48,4 +53,27 @@ export function sortTimeEntries(a: TimeEntry, b: TimeEntry) {
     if (timeInterval !== 0) return timeInterval;
     else return determineDuration(b.endTime, a.endTime);
   }
+}
+
+export function timeEntryOverlap(
+  currTimeEntry: TimeEntry,
+  timeEntries: TimeEntry[]
+): TimeEntry[] {
+  const { id, date: currTimeEntryDate, startTime, endTime } = currTimeEntry;
+  const currTimeEntryStart = convertToNumber(startTime);
+  const currTimeEntryEnd = convertToNumber(endTime);
+  const overlappingTimeEntries = [];
+  for (let timeEntry of timeEntries) {
+    if (timeEntry.date === currTimeEntryDate && timeEntry.id !== id) {
+      const timeEntryStart = convertToNumber(timeEntry.startTime);
+      const timeEntryEnd = convertToNumber(timeEntry.endTime);
+      if (
+        currTimeEntryEnd > timeEntryStart &&
+        currTimeEntryStart < timeEntryEnd
+      ) {
+        overlappingTimeEntries.push(timeEntry);
+      }
+    }
+  }
+  return overlappingTimeEntries;
 }

@@ -74,3 +74,7 @@ export function formatDuration(minutesTotal: number): string {
   const minutesText: string = minutes > 0 ? minutes + "m" : "";
   return hoursText + (hours && minutes ? " " : "") + minutesText;
 }
+
+export function convertToNumber(timeValue: TimeValue): number {
+  return timeValue.hours * 60 + timeValue.minutes;
+}
