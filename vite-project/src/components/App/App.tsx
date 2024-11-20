@@ -20,10 +20,11 @@ export type TabName =
   | "DELETE"
   | "IMPORT"
   | "STATS"
-  | "CATEGORIES";
+  | "CATEGORIES"
+  | "CREDITS";
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState<TabName>("ADD");
+  const [selectedTab, setSelectedTab] = useState<TabName>("CREDITS");
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
   const [categories, setCategories] = useState<string[]>(["Unknown"]);
   const [selectedId, setSelectedId] = useState<string>("");
@@ -294,6 +295,46 @@ function App() {
           deleteCategory={deleteCategory}
         />
       );
+      break;
+    case "CREDITS":
+      mainContent = (
+        <>
+          <h1>Image Logo</h1>
+          <p>
+            The logo is by{" "}
+            <a href="https://pixabay.com/users/io-images-1096650/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153">
+              Stephan
+            </a>{" "}
+            from{" "}
+            <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153">
+              Pixabay
+            </a>
+          </p>
+          <h1>Icon Logos</h1>
+          <p>
+            Feather icons are distributed under the{" "}
+            <a href="https://github.com/feathericons/feather/blob/main/LICENSE">
+              MIT License
+            </a>
+            .
+          </p>
+          <p>
+            Ionicons 5 icons are distributed under the{" "}
+            <a href="https://github.com/ionic-team/ionicons/blob/main/LICENSE">
+              MIT License
+            </a>
+            .
+          </p>
+          <p>
+            Material Design icons are distributed under the{" "}
+            <a href="https://github.com/google/material-design-icons/blob/master/LICENSE">
+              Apache License 2.0
+            </a>
+            .
+          </p>
+        </>
+      );
+      break;
   }
   return (
     <>

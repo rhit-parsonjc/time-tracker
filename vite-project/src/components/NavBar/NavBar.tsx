@@ -48,6 +48,12 @@ function NavBar(props: Props) {
           selected={tabName === "CATEGORIES"}
           tabLabel="Change Categories"
         />
+        <NavBarEntry
+          selectTab={() => setTabName("CREDITS")}
+          iconName="credits"
+          selected={tabName === "CREDITS"}
+          tabLabel="View Credits"
+        />
       </ul>
     </nav>
   );

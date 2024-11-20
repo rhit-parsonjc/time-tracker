@@ -1,5 +1,7 @@
 # Time Tracker
 
+## Summary
+
 This Time Tracker App allows you to:
 
 - Add, edit, view, and delete time records
@@ -10,7 +12,6 @@ This Time Tracker App allows you to:
 
 ## References
 
-- The logo is by [Stephan](https://pixabay.com/users/io-images-1096650/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153) from [Pixabay](https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153)
 - https://altcademy.com/blog/how-to-write-file-in-reactjs/ to write files
 - https://www.w3docs.com/learn-javascript/file-and-filereader.html to read files
 - Thanks to ABCD.ca's comment on Philipp Serfling's response at https://stackoverflow.com/questions/75883720/504-outdated-optimize-dep-while-using-react-vite (reloading the Vite app to allow the icons to display).
@@ -18,3 +19,17 @@ This Time Tracker App allows you to:
 - https://stackoverflow.com/questions/72146352/vitest-defineconfig-test-does-not-exist-in-type-userconfigexport for fixing a type issue in Vitest
 - https://github.com/testing-library/user-event/issues/399#issuecomment-1597020754 for entering text in date input field, which references https://github.com/testing-library/user-event/issues/941#issuecomment-1234374123
 - https://stackoverflow.com/questions/76679649/how-to-update-the-value-of-a-input-type-time-using-testing-library-use for entering text in time input field
+
+## Sources
+
+### Image Logo
+
+The logo is by [Stephan](https://pixabay.com/users/io-images-1096650/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153) from [Pixabay](https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1606153)
+
+### Icons
+
+Icons used can be found at [react-icons](https://github.com/react-icons/react-icons), licensed under the following [license](https://github.com/react-icons/react-icons?tab=License-1-ov-file).
+
+- Feather icons are distributed under the [MIT License](https://github.com/feathericons/feather/blob/main/LICENSE)
+- Ionicons 5 icons are distributed under the [MIT License](https://github.com/ionic-team/ionicons/blob/main/LICENSE)
+- Material Design icons are distributed under the [Apache License 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE)

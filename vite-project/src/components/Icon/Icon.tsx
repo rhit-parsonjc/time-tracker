@@ -1,5 +1,5 @@
 import { FiTrash2, FiTable, FiUpload, FiDownload } from "react-icons/fi";
-import { IoAdd, IoList } from "react-icons/io5";
+import { IoAdd, IoList, IoDocumentTextOutline } from "react-icons/io5";
 import { MdEdit, MdFilterAlt } from "react-icons/md";
 
 export type IconName =
@@ -10,7 +10,8 @@ export type IconName =
   | "export"
   | "edit"
   | "categories"
-  | "filter";
+  | "filter"
+  | "credits";
 interface Props {
   iconName: IconName;
 }
@@ -34,6 +35,8 @@ function Icon(props: Props) {
       return <IoList />;
     case "filter":
       return <MdFilterAlt />;
+    case "credits":
+      return <IoDocumentTextOutline />;
   }
 }
 
